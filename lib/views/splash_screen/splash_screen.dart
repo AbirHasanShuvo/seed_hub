@@ -6,6 +6,8 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:seed_hub/common_widgets/text_widget.dart';
 import 'package:seed_hub/const/const.dart';
 import 'package:seed_hub/views/auth_screen/login_screen.dart';
@@ -23,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 3), () => Get.to(() => LoginScreen()));
+    Timer(const Duration(milliseconds: 500), () => Get.to(() => LoginScreen()));
   }
 
   @override
@@ -32,9 +34,16 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Column(
         children: [
           Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Colors.blue, Colors.green],
+              ),
+            ),
             // height: MediaQuery.of(context).size.height * 0.23,
             width: double.infinity,
-            color: primaryColor,
+
             child: Column(children: [
               12.heightBox,
               Center(
@@ -62,14 +71,36 @@ class _SplashScreenState extends State<SplashScreen> {
             child: makeText(
                 text: 'All Reliable brands with authentic product',
                 color: blackColor,
+                fontweight: FontWeight.bold,
                 fontFamily: GoogleFonts.montserrat().fontFamily),
           ),
+          makeText(
+              text: 'Customer friendly vendors, faster delivery',
+              color: blackColor,
+              fontweight: FontWeight.bold,
+              fontFamily: GoogleFonts.montserrat().fontFamily),
           const Spacer(),
-          const CircularProgressIndicator(
-            color: primaryColor,
-            strokeWidth: 30,
-          ).paddingAll(12),
-          20.heightBox
+          makeText(
+              text: 'Loading..',
+              color: blackColor,
+              fontweight: FontWeight.bold,
+              fontFamily: GoogleFonts.montserrat().fontFamily),
+          10.heightBox,
+          Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height * 0.08),
+            child: CircularPercentIndicator(
+              animation: true,
+              animationDuration: 500,
+              radius: 40,
+              lineWidth: 10,
+              percent: 1,
+              progressColor: Colors.blue,
+              backgroundColor: Colors.green.shade100,
+              circularStrokeCap: CircularStrokeCap.round,
+              center: const Icon(Icons.access_time_filled),
+            ),
+          ),
         ],
       ),
     );
