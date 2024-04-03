@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:seed_hub/common_widgets/custom_button.dart';
 import 'package:seed_hub/common_widgets/text_widget.dart';
 import 'package:seed_hub/common_widgets/textfield_widget.dart';
 import 'package:seed_hub/const/const.dart';
@@ -31,7 +32,7 @@ class SignupScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.10,
+              height: screenHeight(context) * 0.10,
             ),
             makeText(
                 text: 'Signup Page',
@@ -59,7 +60,7 @@ class SignupScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: screenHeight(context) * 0.09,
+                      height: screenHeight(context) * 0.03,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(30),
@@ -82,7 +83,7 @@ class SignupScreen extends StatelessWidget {
                               children: [
                                 customTextfield('Name', nameController, false),
                                 customTextfield('Email or phone number',
-                                    emailController, true),
+                                    emailController, false),
                                 customTextfield(
                                     'Password', passwordController, true),
                                 customTextfield('Confirm Password',
@@ -104,21 +105,9 @@ class SignupScreen extends StatelessWidget {
                           SizedBox(
                             height: screenHeight(context) * 0.03,
                           ),
-                          Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 50),
-                            height: 50,
-                            decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(50)),
-                            child: Center(
-                              child: makeText(
-                                  text: 'Sign up',
-                                  fontFamily: mainFont,
-                                  color: Colors.white,
-                                  fontweight: FontWeight.bold,
-                                  size: 16.0),
-                            ),
-                          ).onTap(() {
+                          customButton(
+                                  title: 'Sign Up', buttonColor: Colors.blue)
+                              .onTap(() {
                             Get.to(() => HomeScreen());
                           }),
                           SizedBox(

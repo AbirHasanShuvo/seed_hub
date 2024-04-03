@@ -26,8 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(
-        const Duration(milliseconds: 3000), () => Get.to(() => LoginScreen()));
+    Timer(const Duration(milliseconds: 500), () => Get.to(() => LoginScreen()));
   }
 
   @override
@@ -46,26 +45,28 @@ class _SplashScreenState extends State<SplashScreen> {
             // height: MediaQuery.of(context).size.height * 0.23,
             width: double.infinity,
 
-            child: Column(children: [
-              12.heightBox,
-              Center(
-                child: makeText(
-                    text: 'Seed Hub',
-                    color: whiteColor,
-                    size: 30.0,
-                    fontweight: FontWeight.bold,
-                    fontFamily: GoogleFonts.montserrat().fontFamily),
-              ),
-              20.heightBox,
-              Lottie.asset(
-                'assets/lottie/splash.json',
-                // Replace with the path to your Lottie JSON file
-                // fit: BoxFit.cover,
-                // height: MediaQuery.of(context).size.height * 0.1,
-                // width: MediaQuery.of(context).size.width * 0.1,
-                repeat: true, // Set to true if you want the animation to loop
-              ),
-            ]).box.padding(const EdgeInsets.all(20)).make(),
+            child: SafeArea(
+              child: Column(children: [
+                12.heightBox,
+                Center(
+                  child: makeText(
+                      text: 'Seed Hub',
+                      color: whiteColor,
+                      size: 30.0,
+                      fontweight: FontWeight.bold,
+                      fontFamily: GoogleFonts.montserrat().fontFamily),
+                ),
+                20.heightBox,
+                Lottie.asset(
+                  'assets/lottie/splash.json',
+                  // Replace with the path to your Lottie JSON file
+                  // fit: BoxFit.cover,
+                  // height: MediaQuery.of(context).size.height * 0.1,
+                  // width: MediaQuery.of(context).size.width * 0.1,
+                  repeat: true, // Set to true if you want the animation to loop
+                ),
+              ]).box.padding(const EdgeInsets.all(20)).make(),
+            ),
           ),
           20.heightBox,
           Align(
@@ -92,7 +93,7 @@ class _SplashScreenState extends State<SplashScreen> {
             padding: EdgeInsets.only(bottom: screenHeight(context) * 0.08),
             child: CircularPercentIndicator(
               animation: true,
-              animationDuration: 3000,
+              animationDuration: 500,
               radius: 40,
               lineWidth: 10,
               percent: 1,
