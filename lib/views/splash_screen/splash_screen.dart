@@ -25,7 +25,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(const Duration(milliseconds: 500), () => Get.to(() => LoginScreen()));
+    Timer(
+        const Duration(milliseconds: 1000), () => Get.to(() => LoginScreen()));
   }
 
   @override
@@ -87,11 +88,10 @@ class _SplashScreenState extends State<SplashScreen> {
               fontFamily: GoogleFonts.montserrat().fontFamily),
           10.heightBox,
           Padding(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).size.height * 0.08),
+            padding: EdgeInsets.only(bottom: screenHeight(context) * 0.08),
             child: CircularPercentIndicator(
               animation: true,
-              animationDuration: 500,
+              animationDuration: 1000,
               radius: 40,
               lineWidth: 10,
               percent: 1,
