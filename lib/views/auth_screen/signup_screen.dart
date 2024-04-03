@@ -6,15 +6,18 @@ import 'package:seed_hub/common_widgets/textfield_widget.dart';
 import 'package:seed_hub/const/const.dart';
 import 'package:seed_hub/const/list.dart';
 import 'package:seed_hub/views/auth_screen/signup_screen.dart';
+import 'package:seed_hub/views/home_screen/home_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var nameController = TextEditingController();
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
+    var confirmpasswordController = TextEditingController();
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -31,13 +34,13 @@ class LoginScreen extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.10,
             ),
             makeText(
-                text: 'Login Page',
+                text: 'Signup Page',
                 size: 30.0,
                 color: whiteColor,
                 fontFamily: mainFont,
                 fontweight: FontWeight.bold),
             makeText(
-                text: 'Wellcome back',
+                text: 'Be a member of us',
                 size: 16.0,
                 color: whiteColor,
                 fontFamily: mainFont,
@@ -77,10 +80,13 @@ class LoginScreen extends StatelessWidget {
                                 ]),
                             child: Column(
                               children: [
-                                customTextfield('Email or password',
-                                    emailController, false),
+                                customTextfield('Name', nameController, false),
+                                customTextfield('Email or phone number',
+                                    emailController, true),
                                 customTextfield(
-                                    'Password', passwordController, true)
+                                    'Password', passwordController, true),
+                                customTextfield('Confirm Password',
+                                    confirmpasswordController, true),
                               ],
                             ),
                           ),
@@ -106,42 +112,18 @@ class LoginScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(50)),
                             child: Center(
                               child: makeText(
-                                  text: 'Login',
+                                  text: 'Sign up',
                                   fontFamily: mainFont,
                                   color: Colors.white,
                                   fontweight: FontWeight.bold,
                                   size: 16.0),
                             ),
                           ).onTap(() {
-                            Get.to(() => SignupScreen());
+                            Get.to(() => HomeScreen());
                           }),
                           SizedBox(
                             height: screenHeight(context) * 0.03,
                           ),
-                          makeText(
-                              text: 'Connect with social accounts',
-                              color: Colors.grey,
-                              size: 16.0,
-                              fontFamily: mainFont),
-                          SizedBox(
-                            height: screenHeight(context) * 0.02,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: List.generate(
-                                3,
-                                (index) => Padding(
-                                      padding: const EdgeInsets.all(8),
-                                      child: CircleAvatar(
-                                        backgroundColor: lightGrey,
-                                        radius: 25,
-                                        child: Image.asset(
-                                          socialIconList[index],
-                                          width: 30,
-                                        ),
-                                      ),
-                                    ).onTap(() {})),
-                          )
                         ],
                       ),
                     )

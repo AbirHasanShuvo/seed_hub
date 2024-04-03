@@ -1,0 +1,170 @@
+{
+  "project_info": {
+    "project_number": "118964058790",
+    "project_id": "talkease-renew",
+    "storage_bucket": "talkease-renew.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118964058790:android:6ed88933d9508acfaf9267",
+        "android_client_info": {
+          "package_name": "com.example.seed_hub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118964058790-pngtrk5q2lvsrvcu77p9jtm8s0qh6meh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoZVHLxZmXCiFVf4dcIR-PSF3kDMERx8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118964058790-pngtrk5q2lvsrvcu77p9jtm8s0qh6meh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "118964058790-eur0mqi8j2sfs021pdu8tc62ebjeqnp2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.talkeaseRenew"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118964058790:android:c7f0b2c343c14c03af9267",
+        "android_client_info": {
+          "package_name": "com.example.social_media_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118964058790-uohvh65hjnic4vp4tns8k6hgbm1kdu9o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.social_media_app",
+            "certificate_hash": "5c06e7927cddf0108eb57d2d7c0fec320e5ee4d9"
+          }
+        },
+        {
+          "client_id": "118964058790-pngtrk5q2lvsrvcu77p9jtm8s0qh6meh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoZVHLxZmXCiFVf4dcIR-PSF3kDMERx8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118964058790-pngtrk5q2lvsrvcu77p9jtm8s0qh6meh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "118964058790-eur0mqi8j2sfs021pdu8tc62ebjeqnp2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.talkeaseRenew"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118964058790:android:4d298aef8329cf87af9267",
+        "android_client_info": {
+          "package_name": "com.example.talkease"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118964058790-pngtrk5q2lvsrvcu77p9jtm8s0qh6meh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoZVHLxZmXCiFVf4dcIR-PSF3kDMERx8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118964058790-pngtrk5q2lvsrvcu77p9jtm8s0qh6meh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "118964058790-eur0mqi8j2sfs021pdu8tc62ebjeqnp2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.talkeaseRenew"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118964058790:android:38c15d83629d0574af9267",
+        "android_client_info": {
+          "package_name": "com.example.talkease_renew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118964058790-gdlort1p8lmfeuilccoksta4hu3g556a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.talkease_renew",
+            "certificate_hash": "e15eb2ae3ac4c3a2c2804b759de006904cef9f55"
+          }
+        },
+        {
+          "client_id": "118964058790-pngtrk5q2lvsrvcu77p9jtm8s0qh6meh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoZVHLxZmXCiFVf4dcIR-PSF3kDMERx8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118964058790-pngtrk5q2lvsrvcu77p9jtm8s0qh6meh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "118964058790-eur0mqi8j2sfs021pdu8tc62ebjeqnp2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.talkeaseRenew"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

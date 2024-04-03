@@ -6,6 +6,7 @@ const secondary = Colors.yellow;
 const thirdColor = Colors.orange;
 const whiteColor = Colors.white;
 const blackColor = Colors.black;
+const Color lightGrey = Color.fromRGBO(239, 239, 239, 1);
 
 var mainFont = GoogleFonts.montserrat().fontFamily;
 

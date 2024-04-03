@@ -11,6 +11,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:seed_hub/common_widgets/text_widget.dart';
 import 'package:seed_hub/const/const.dart';
 import 'package:seed_hub/views/auth_screen/login_screen.dart';
+import 'package:seed_hub/views/auth_screen/signup_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(
-        const Duration(milliseconds: 1000), () => Get.to(() => LoginScreen()));
+        const Duration(milliseconds: 3000), () => Get.to(() => LoginScreen()));
   }
 
   @override
@@ -91,7 +92,7 @@ class _SplashScreenState extends State<SplashScreen> {
             padding: EdgeInsets.only(bottom: screenHeight(context) * 0.08),
             child: CircularPercentIndicator(
               animation: true,
-              animationDuration: 1000,
+              animationDuration: 3000,
               radius: 40,
               lineWidth: 10,
               percent: 1,
