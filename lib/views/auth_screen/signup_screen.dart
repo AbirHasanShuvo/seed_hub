@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,6 +7,7 @@ import 'package:seed_hub/common_widgets/text_widget.dart';
 import 'package:seed_hub/common_widgets/textfield_widget.dart';
 import 'package:seed_hub/const/const.dart';
 import 'package:seed_hub/const/list.dart';
+import 'package:seed_hub/controllers/auth_controller.dart';
 import 'package:seed_hub/views/auth_screen/signup_screen.dart';
 import 'package:seed_hub/views/home_screen/home_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -19,6 +21,7 @@ class SignupScreen extends StatelessWidget {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
     var confirmpasswordController = TextEditingController();
+    var controller = Get.put(AuthController());
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -107,8 +110,18 @@ class SignupScreen extends StatelessWidget {
                           ),
                           customButton(
                                   title: 'Sign Up', buttonColor: Colors.blue)
-                              .onTap(() {
-                            Get.to(() => HomeScreen());
+                              .onTap(() async {
+                            try {
+                              await controller
+                                  .signupMethod(
+                                      context: context,
+                                      email: emailController.text,
+                                      password: passwordController.text)
+                                  .then((value) =>
+                                      Get.offAll(() => HomeScreen()));
+                            } on FirebaseException catch (e) {
+                              VxToast.show(context, msg: e.toString());
+                            }
                           }),
                           SizedBox(
                             height: screenHeight(context) * 0.03,
