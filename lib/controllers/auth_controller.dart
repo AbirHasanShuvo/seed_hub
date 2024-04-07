@@ -7,6 +7,7 @@ import 'package:seed_hub/views/home_screen/home_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AuthController extends GetxController {
+  var isLoading = false.obs;
   signInWithGoogle() async {
     try {
       final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -24,7 +25,11 @@ class AuthController extends GetxController {
     }
   }
 
+  //sign up method
   Future<UserCredential?> signupMethod({email, password, context}) async {
+    // isLoading = true.obs;
+    //we need this obs variable for using obs in the previous widget
+
     UserCredential? userCredential;
 
     try {
@@ -33,7 +38,34 @@ class AuthController extends GetxController {
     } on FirebaseAuthException catch (e) {
       VxToast.show(context, msg: e.toString());
     }
+    // isLoading = false.obs;
+    return userCredential;
+  }
+
+  //login method
+  Future<UserCredential?> loginMethod({email, password, context}) async {
+    UserCredential? userCredential;
+
+    try {
+      userCredential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      VxToast.show(context, msg: e.toString());
+    }
 
     return userCredential;
+  }
+
+  //signout method
+  signoutMethod(context) async {
+    try {
+      await auth.signOut();
+    } on FirebaseAuthException catch (e) {
+      VxToast.show(context, msg: e.toString());
+    }
+  }
+
+  Future<void> signOutNew() async {
+    await FirebaseAuth.instance.signOut();
   }
 }

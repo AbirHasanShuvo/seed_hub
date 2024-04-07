@@ -1,20 +1,13 @@
 import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:seed_hub/common_widgets/text_widget.dart';
 import 'package:seed_hub/const/const.dart';
-import 'package:seed_hub/const/firebase_const.dart';
-import 'package:seed_hub/views/auth_screen/login_screen.dart';
-import 'package:seed_hub/views/auth_screen/signup_screen.dart';
-import 'package:seed_hub/views/home_screen/home_screen.dart';
+import 'package:seed_hub/views/helping_screen/helping_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,15 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(
-        const Duration(milliseconds: 500),
-        () => auth.authStateChanges().listen((User? user) {
-              if (user == null && mounted) {
-                Get.to(() => LoginScreen());
-              } else {
-                Get.to(() => HomeScreen());
-              }
-            }));
+    Future.delayed(const Duration(milliseconds: 500), () {
+      Get.to(() => HelpingScreen());
+    });
   }
 
   @override
