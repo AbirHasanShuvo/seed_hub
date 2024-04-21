@@ -117,7 +117,6 @@ class LoginScreen extends StatelessWidget {
                                             password: passwordController.text)
                                         .then((value) {
                                       if (value != null) {
-
                                         controller.isLoading.value = false;
                                         Get.to(() => HomeScreen());
                                         VxToast.show(context,
@@ -126,7 +125,6 @@ class LoginScreen extends StatelessWidget {
                                         controller.isLoading.value = false;
                                       }
                                     });
-
                                   }),
                             SizedBox(
                               height: screenHeight(context) * 0.02,
