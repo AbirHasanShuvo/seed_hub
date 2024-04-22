@@ -15,3 +15,7 @@ const slider2_s1 = "assets/images/ss1.jpg";
 const slider2_s2 = "assets/images/ss2.jpg";
 const slider2_s3 = "assets/images/ss3.jpg";
 const slider2_s4 = "assets/images/ss4.jpg";
+
+//for hot deal & flash sale
+const hotDeal = "assets/icons/hotdeal.png";
+const flashSale = "assets/icons/flashsale.png";
