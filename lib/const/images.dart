@@ -19,3 +19,11 @@ const slider2_s4 = "assets/images/ss4.jpg";
 //for hot deal & flash sale
 const hotDeal = "assets/icons/hotdeal.png";
 const flashSale = "assets/icons/flashsale.png";
+
+//for feature products icons
+const phoneTabsIcon = "assets/icons/smartphone.png";
+const laptopPcIcon = "assets/icons/computer.png";
+const networkComponentsIcon = "assets/icons/wifi.png";
+const womanFashionIcon = "assets/icons/woman.png";
+const bikeCarsIcon = "assets/icons/bikecars.png";
+const gadgetsIcon = "assets/icons/gadgets.png";

@@ -113,29 +113,68 @@ class _HomeScreenState extends State<HomeScreen> {
                           physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: List.generate(
-                                3,
-                                (index) => Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                              3,
+                              (index) => Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(color: Colors.white),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10))),
+                                    padding: const EdgeInsets.all(8),
+                                    child: Row(
+                                      // mainAxisAlignment:
+                                      //     MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Container(
-                                          padding: const EdgeInsets.all(8),
-                                          color: Colors.white,
-                                          child: Row(
-                                            children: [
-                                              Image.asset(
-                                                width: 25,
-                                                hotDeal,
-                                              ),
-                                              3.widthBox,
-                                              makeText(text: 'Phone & Tabs', fontFamily: mainFont)
-                                            ],
-                                          ),
-                                        ).box.make(),
-                                       
+                                        Image.asset(
+                                          width: 25,
+                                          featureProductsIcons1[index],
+                                        ),
+                                        3.widthBox,
+                                        makeText(
+                                          text: featureProducts1[index],
+                                          fontFamily: mainFont,
+                                        )
                                       ],
-                                    ).box.margin(const EdgeInsets.only(right: 8)).make(),
-
+                                    )
+                                        .box
+                                        .padding(const EdgeInsets.all(8))
+                                        .make(),
+                                  ),
+                                  8.heightBox,
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border.all(color: Colors.white),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10))),
+                                    padding: const EdgeInsets.all(8),
+                                    child: Row(
+                                      children: [
+                                        Image.asset(
+                                          width: 25,
+                                          featureProductsIcons2[index],
+                                        ),
+                                        3.widthBox,
+                                        makeText(
+                                          text: featureProducts2[index],
+                                          fontFamily: mainFont,
+                                        )
+                                      ],
+                                    )
+                                        .box
+                                        .padding(const EdgeInsets.all(8))
+                                        .make(),
+                                  ).box.make(),
+                                ],
+                              )
+                                  .box
+                                  .margin(const EdgeInsets.only(right: 5))
+                                  .make(),
                             ),
                           ),
                         ),
