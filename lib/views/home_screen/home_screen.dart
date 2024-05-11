@@ -46,7 +46,32 @@ class HomeScreen extends StatelessWidget {
                       .margin(const EdgeInsets.symmetric(horizontal: 8))
                       .make(),
                 ),
-                15.heightBox,
+                14.heightBox,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: List.generate(
+                      2,
+                      (index) => Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 30),
+                            child: Column(
+                              children: [
+                                Image.asset(topIcons[index]),
+                                3.heightBox,
+                                makeText(
+                                    text: topIconText[index],
+                                    size: 14.0,
+                                    fontFamily: mainFont,
+                                    color: Colors.green,
+                                    fontweight: FontWeight.bold)
+                              ],
+                            ),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20)),
+                          )),
+                ),
+                10.heightBox,
                 Align(
                   alignment: Alignment.topLeft,
                   child: makeText(
@@ -61,11 +86,10 @@ class HomeScreen extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 6,
-                      crossAxisSpacing: 4,
-                          mainAxisExtent: 220
-                    ),
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 6,
+                            crossAxisSpacing: 4,
+                            mainAxisExtent: 220),
                     itemCount: 6,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
@@ -77,9 +101,9 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Image.asset(
                               topSelling[index],
-                              width: screenWidth(context)*0.2,
-                              height: screenHeight(context)*0.2,
-                              fit: BoxFit.contain,
+                              width: 150,
+                              height: 130,
+                              fit: BoxFit.cover,
                             ),
                             3.heightBox,
                             makeText(
@@ -87,20 +111,41 @@ class HomeScreen extends StatelessWidget {
                                 size: 14.0,
                                 fontFamily: mainFont,
                                 fontweight: FontWeight.bold,
-                            color: Colors.green
-                            ),
+                                color: Colors.green),
                             2.heightBox,
                             makeText(
                                 text: topSellingPrice[index],
-                                size: 11.0,
+                                size: 16.0,
                                 fontFamily: mainFont,
                                 fontweight: FontWeight.bold,
-                                color: Colors.red
-                            )
+                                color: Colors.red)
                           ],
                         ),
                       );
                     }),
+                10.heightBox,
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: makeText(
+                      text: 'Feature Categories',
+                      size: 14.0,
+                      fontFamily: mainFont,
+                      fontweight: FontWeight.bold),
+                ),
+                10.heightBox,
+                SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: List.generate(
+                        3,
+                        (index) => Column(
+                              children: [
+
+                              ],
+                            )),
+                  ),
+                ),
               ],
             ),
           ),

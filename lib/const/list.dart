@@ -44,3 +44,7 @@ const topSellingPrice = [
   "40\$",
   '600\$'
 ];
+
+const  topIcons = [hotDeal, flashSale];
+
+const topIconText = ['Hot Deals', 'Flash Sale'];
