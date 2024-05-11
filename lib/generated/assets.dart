@@ -2,7 +2,27 @@
 class Assets {
   Assets._();
 
+  static const String iconsBikecars = 'assets/icons/bikecars.png';
+  static const String iconsComputer = 'assets/icons/computer.png';
+  static const String iconsFacebookLogo = 'assets/icons/facebook_logo.png';
+  static const String iconsFlashsale = 'assets/icons/flashsale.png';
+  static const String iconsGadgets = 'assets/icons/gadgets.png';
+  static const String iconsGoogleLogo = 'assets/icons/google_logo.png';
+  static const String iconsHotdeal = 'assets/icons/hotdeal.png';
   static const String iconsShopping = 'assets/icons/shopping.png';
+  static const String iconsSmartphone = 'assets/icons/smartphone.png';
+  static const String iconsTwitterLogo = 'assets/icons/twitter_logo.png';
+  static const String iconsWifi = 'assets/icons/wifi.png';
+  static const String iconsWoman = 'assets/icons/woman.png';
+  static const String imagesIPhone 12 = 'assets/images/iPhone 12.jpg';
+  static const String imagesSlider1 = 'assets/images/slider_1.png';
+  static const String imagesSlider2 = 'assets/images/slider_2.png';
+  static const String imagesSlider3 = 'assets/images/slider_3.png';
+  static const String imagesSlider4 = 'assets/images/slider_4.png';
+  static const String imagesSs1 = 'assets/images/ss1.jpg';
+  static const String imagesSs2 = 'assets/images/ss2.jpg';
+  static const String imagesSs3 = 'assets/images/ss3.jpg';
+  static const String imagesSs4 = 'assets/images/ss4.jpg';
   static const String lottieSplash = 'assets/lottie/splash.json';
 
 }

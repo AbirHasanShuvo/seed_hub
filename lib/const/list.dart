@@ -17,3 +17,30 @@ const featureProductsIcons1 = [
   networkComponentsIcon,
 ];
 const featureProductsIcons2 = [womanFashionIcon, bikeCarsIcon, gadgetsIcon];
+
+const topSelling = [
+  bridalTop,
+  iPhoneTop,
+  jerseyTop,
+  lehengaTop,
+  routerTop,
+  vivobookTop
+];
+
+const topSellingName = [
+  "Bridal necklace",
+  'iPhone 12',
+  "Barcelona jersey",
+  "Lehenga",
+  "TP link c80",
+  "Vivobook 15"
+];
+
+const topSellingPrice = [
+  '10000\$',
+  '699\$',
+  "100\$",
+  "250\$",
+  "40\$",
+  '600\$'
+];

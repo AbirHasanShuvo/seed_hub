@@ -27,3 +27,11 @@ const networkComponentsIcon = "assets/icons/wifi.png";
 const womanFashionIcon = "assets/icons/woman.png";
 const bikeCarsIcon = "assets/icons/bikecars.png";
 const gadgetsIcon = "assets/icons/gadgets.png";
+
+//for top selling products
+const bridalTop = "assets/images/bridal.jpg";
+const iPhoneTop = "assets/images/iPhone 12.jpg";
+const jerseyTop = "assets/images/jersey.jpeg";
+const lehengaTop = "assets/images/lehenga.jpg";
+const routerTop = "assets/images/tp.jpeg";
+const vivobookTop = "assets/images/vivobook.jpg";
