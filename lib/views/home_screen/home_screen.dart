@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../common_widgets/feature_buttton.dart';
 import '../../common_widgets/text_widget.dart';
 import '../../const/const.dart';
 import '../../const/list.dart';
@@ -76,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: makeText(
                       text: 'Top selling products',
-                      size: 14.0,
+                      size: 16.0,
                       fontFamily: mainFont,
                       fontweight: FontWeight.bold),
                 ),
@@ -128,22 +129,28 @@ class HomeScreen extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: makeText(
                       text: 'Feature Categories',
-                      size: 14.0,
+                      size: 16.0,
                       fontFamily: mainFont,
                       fontweight: FontWeight.bold),
                 ),
                 10.heightBox,
                 SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
                   child: Row(
                     children: List.generate(
                         3,
-                        (index) => Column(
-                              children: [
-
-                              ],
-                            )),
+                            (index) => Column(
+                          children: [
+                            featureButton(
+                                title: featureTitles1[index],
+                                icon: featureImages1[index]),
+                            10.heightBox,
+                            featureButton(
+                                title: featureTitles2[index],
+                                icon: featureImages2[index]),
+                          ],
+                        )).toList(),
                   ),
                 ),
               ],

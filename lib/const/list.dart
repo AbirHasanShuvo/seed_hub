@@ -48,3 +48,11 @@ const topSellingPrice = [
 const  topIcons = [hotDeal, flashSale];
 
 const topIconText = ['Hot Deals', 'Flash Sale'];
+
+const featureTitles1 = ['Girls dress', 'Smartphone & Tabs', 'Bikes & cars', ];
+const featureTitles2 = ['T-shits', 'Network products', 'Sneakers & shoes', ];
+
+const featureImages1 = [gdress, phoneTabsIcon, bikeCarsIcon];
+const featureImages2 = [tshirtsIcon, networkComponentsIcon, sneakersIcon];
+
+

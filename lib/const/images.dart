@@ -24,7 +24,7 @@ const flashSale = "assets/icons/flashsale.png";
 const phoneTabsIcon = "assets/icons/smartphone.png";
 const laptopPcIcon = "assets/icons/computer.png";
 const networkComponentsIcon = "assets/icons/wifi.png";
-const womanFashionIcon = "assets/icons/woman.png";
+const womanFashionIcon = "assets/icons/gdress.png";
 const bikeCarsIcon = "assets/icons/bikecars.png";
 const gadgetsIcon = "assets/icons/gadgets.png";
 
@@ -36,6 +36,10 @@ const lehengaTop = "assets/images/lehenga.jpg";
 const routerTop = "assets/images/tp.jpeg";
 const vivobookTop = "assets/images/vivobook.jpg";
 
+//category images
+const tshirtsIcon = "assets/icons/tshirt.png";
+const sneakersIcon = "assets/icons/sneakers.png";
+const gdress = "assets/icons/gdress.png";
 
 
 
