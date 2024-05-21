@@ -41,5 +41,9 @@ const tshirtsIcon = "assets/icons/tshirt.png";
 const sneakersIcon = "assets/icons/sneakers.png";
 const gdress = "assets/icons/gdress.png";
 
+//icons in the below
 
-
+const homePage = "assets/icons/home.png";
+const categoryPage = "assets/icons/application.png";
+const cartPage = "assets/icons/carts.png";
+const profilePage = "assets/icons/user.png";

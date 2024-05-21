@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../common_widgets/feature_buttton.dart';
@@ -140,19 +141,31 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     children: List.generate(
                         3,
-                            (index) => Column(
-                          children: [
-                            featureButton(
-                                title: featureTitles1[index],
-                                icon: featureImages1[index]),
-                            10.heightBox,
-                            featureButton(
-                                title: featureTitles2[index],
-                                icon: featureImages2[index]),
-                          ],
-                        )).toList(),
+                        (index) => Column(
+                              children: [
+                                featureButton(
+                                    title: featureTitles1[index],
+                                    icon: featureImages1[index]),
+                                10.heightBox,
+                                featureButton(
+                                    title: featureTitles2[index],
+                                    icon: featureImages2[index]),
+                              ],
+                            )).toList(),
                   ),
                 ),
+                15.heightBox,
+                10.heightBox,
+                Column(children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: makeText(
+                        text: 'Feature products',
+                        size: 16.0,
+                        fontFamily: mainFont,
+                        fontweight: FontWeight.bold),
+                  ),
+                ]),
               ],
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seed_hub/views/home_screen/home.dart';
 
 import '../../const/firebase_const.dart';
 import '../auth_screen/login_screen.dart';
@@ -22,7 +23,7 @@ class HelpingScreen extends StatelessWidget {
           //this returning splashscreen will generate that screen until the below hasdata
           //found or we can say that bolowed if statement worked
           if (snapshot.hasData) {
-            return const HomeScreen();
+            return const Home();
           }
           return const LoginScreen();
         },

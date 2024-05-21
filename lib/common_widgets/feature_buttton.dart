@@ -9,11 +9,10 @@ Widget featureButton({title, icon}) {
       Image.asset(
         icon,
         fit: BoxFit.fill,
-        width: 60,
+        width: 40,
       ),
       10.widthBox,
       makeText(text: title, fontFamily: mainFont, size: 14.0),
-
     ],
   )
       .box
