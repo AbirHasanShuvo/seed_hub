@@ -47,3 +47,8 @@ const homePage = "assets/icons/home.png";
 const categoryPage = "assets/icons/application.png";
 const cartPage = "assets/icons/carts.png";
 const profilePage = "assets/icons/user.png";
+
+//offer categories
+const jerseyOffer = "assets/images/jersey.jpg";
+const smartphoneOffer = "assets/images/smartphone.jpg";
+
