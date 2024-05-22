@@ -51,4 +51,15 @@ const profilePage = "assets/icons/user.png";
 //offer categories
 const jerseyOffer = "assets/images/jersey.jpg";
 const smartphoneOffer = "assets/images/smartphone.jpg";
+const routerOffer = "assets/images/archer.jpg";
 
+//for category icons
+const fashionCategory = "assets/icons/fashionapparel.png";
+const electronicsCategory = "assets/icons/electronics.png";
+const homeFurnitureCategory = "assets/icons/homefurniture.png";
+const beautyCategory = "assets/icons/beauty.png";
+const booksCategory = "assets/icons/books.png";
+const sportsCategory = "assets/icons/sports.png";
+const healthCategory = "assets/icons/healthcare.png";
+const petfoodCategory = "assets/icons/petfood.png";
+const toysCategory = "assets/icons/toys.png";

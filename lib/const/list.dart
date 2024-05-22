@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:seed_hub/common_widgets/string.dart';
 import 'package:seed_hub/const/images.dart';
 
@@ -36,23 +37,58 @@ const topSellingName = [
   "Vivobook 15"
 ];
 
-const topSellingPrice = [
-  '10000\$',
-  '699\$',
-  "100\$",
-  "250\$",
-  "40\$",
-  '600\$'
-];
+const topSellingPrice = ['10000\$', '699\$', "100\$", "250\$", "40\$", '600\$'];
 
-const  topIcons = [hotDeal, flashSale];
+const topIcons = [hotDeal, flashSale];
 
 const topIconText = ['Hot Deals', 'Flash Sale'];
 
-const featureTitles1 = ['Girls dress', 'Smartphone & Tabs', 'Bikes & cars', ];
-const featureTitles2 = ['T-shits', 'Network products', 'Sneakers & shoes', ];
+const featureTitles1 = [
+  'Girls dress',
+  'Smartphone & Tabs',
+  'Bikes & cars',
+];
+const featureTitles2 = [
+  'T-shits',
+  'Network products',
+  'Sneakers & shoes',
+];
 
 const featureImages1 = [gdress, phoneTabsIcon, bikeCarsIcon];
 const featureImages2 = [tshirtsIcon, networkComponentsIcon, sneakersIcon];
 
+//list for categories
 
+const categoryOffer = [jerseyOffer, smartphoneOffer, routerOffer];
+const categoryOfferText = ['40% offer on-', '10% offer on-', '15% offer on-'];
+const categoryOfferProductname = [
+  'Custom jersey',
+  'Lenovo laptops',
+  'Tp link archer c64'
+];
+const categoryOfferColors = [Colors.blue, Colors.green, Colors.blue];
+
+//for category icons
+const categoryIcons = [
+  fashionCategory,
+  electronicsCategory,
+  homeFurnitureCategory,
+  beautyCategory,
+  booksCategory,
+  sportsCategory,
+  healthCategory,
+  petfoodCategory,
+  toysCategory
+];
+
+const categoryTexts = [
+  'Fashion and Apparel',
+  'Electronics & Gadgets',
+  'Home & Furniture',
+  'Beauty & Personal care',
+  'Books & Media',
+  'Sports & Outdoor',
+  'Health & Wellness',
+  'Pets & Supplies',
+  'Toys'
+];

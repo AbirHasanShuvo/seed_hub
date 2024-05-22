@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:seed_hub/common_widgets/string.dart';
 import 'package:seed_hub/common_widgets/text_widget.dart';
@@ -23,7 +25,7 @@ class CategoryScreen extends StatelessWidget {
               children: [
                 8.heightBox,
                 Align(
-                    alignment: Alignment.center,
+                    alignment: Alignment.topLeft,
                     child: makeText(
                         text: 'Special offers on',
                         size: 16.0,
@@ -34,7 +36,7 @@ class CategoryScreen extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   child: Row(
                       children: List.generate(
-                    6,
+                    3,
                     (index) => Container(
                         decoration: BoxDecoration(
                             color: whiteColor,
@@ -44,14 +46,20 @@ class CategoryScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             makeText(
-                                text: '30% offer on',
-                                size: 12.0,
-                                color: Colors.green,
+                                text: categoryOfferText[index],
+                                size: 17.0,
+                                color: categoryOfferColors[index],
+                                fontFamily: mainFont,
+                                fontweight: FontWeight.bold),
+                            makeText(
+                                text: categoryOfferProductname[index],
+                                size: 14.0,
+                                color: Colors.red,
                                 fontFamily: mainFont,
                                 fontweight: FontWeight.bold),
                             Image.asset(
-                              jerseyOffer,
-                              height: screenHeight(context) * 0.2,
+                              categoryOffer[index],
+                              height: screenHeight(context) * 0.3,
                               width: screenWidth(context) * 0.8,
                             ),
                           ],
@@ -67,19 +75,28 @@ class CategoryScreen extends StatelessWidget {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 3,
-                                mainAxisSpacing: 6,
+                                mainAxisSpacing: 4,
                                 crossAxisSpacing: 4,
-                                mainAxisExtent: 220),
-                        itemCount: 6,
+                                mainAxisExtent: 170),
+                        itemCount: 9,
                         itemBuilder: (BuildContext context, int index) {
                           return Container(
                             decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(5)),
+                                borderRadius: BorderRadius.circular(10)),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [],
-                            ),
+                              children: [
+                                Image.asset(
+                                  categoryIcons[index],
+                                ),
+                                2.heightBox,
+                                makeText(
+                                    text: categoryTexts[index],
+                                    size: 13.0,
+                                    fontFamily: mainFont),
+                              ],
+                            ).box.padding(const EdgeInsets.all(15)).make(),
                           );
                         }),
                   ],
