@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:seed_hub/services/firestore_services.dart';
 
 import '../../common_widgets/feature_buttton.dart';
 import '../../common_widgets/text_widget.dart';
@@ -83,48 +83,107 @@ class HomeScreen extends StatelessWidget {
                       fontweight: FontWeight.bold),
                 ),
                 10.heightBox,
-                GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 4,
-                            crossAxisSpacing: 4,
-                            mainAxisExtent: 220),
-                    itemCount: 6,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              topSelling[index],
-                              width: 150,
-                              height: 130,
-                              fit: BoxFit.cover,
-                            ),
-                            3.heightBox,
-                            makeText(
-                                text: topSellingName[index],
-                                size: 14.0,
-                                fontFamily: mainFont,
-                                fontweight: FontWeight.bold,
-                                color: Colors.green),
-                            2.heightBox,
-                            makeText(
-                                text: topSellingPrice[index],
-                                size: 16.0,
-                                fontFamily: mainFont,
-                                fontweight: FontWeight.bold,
-                                color: Colors.red)
-                          ],
-                        ),
-                      );
+                FutureBuilder(
+                    future: FirestoreServices.getFeatureProducts(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: Text('no value'),
+                        );
+                      } else if (snapshot.data!.docs.isEmpty) {
+                        return Center(
+                          child: "No featured product found".text.make(),
+                        );
+                      } else {
+                        var featureData = snapshot.data!.docs;
+
+                        return GridView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 4,
+                                    crossAxisSpacing: 4,
+                                    mainAxisExtent: 220),
+                            itemCount: featureData.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.network(
+                                      featureData[index]['p_imgs'][0],
+                                      width: 150,
+                                      height: 130,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    3.heightBox,
+                                    makeText(
+                                        text: featureData[index]['p_name'],
+                                        size: 14.0,
+                                        fontFamily: mainFont,
+                                        fontweight: FontWeight.bold,
+                                        color: Colors.green),
+                                    2.heightBox,
+                                    makeText(
+                                        text: featureData[index]['p_price'],
+                                        size: 16.0,
+                                        fontFamily: mainFont,
+                                        fontweight: FontWeight.bold,
+                                        color: Colors.red)
+                                  ],
+                                ),
+                              ).onTap(() {VxToast.show(context, msg: featureData[index]['p_name']);}).box.make();
+                            });
+                      }
                     }),
+                // GridView.builder(
+                //     shrinkWrap: true,
+                //     physics: const NeverScrollableScrollPhysics(),
+                //     gridDelegate:
+                //         const SliverGridDelegateWithFixedCrossAxisCount(
+                //             crossAxisCount: 2,
+                //             mainAxisSpacing: 4,
+                //             crossAxisSpacing: 4,
+                //             mainAxisExtent: 220),
+                //     itemCount: 6,
+                //     itemBuilder: (BuildContext context, int index) {
+                //       return Container(
+                //         decoration: BoxDecoration(
+                //             color: Colors.white,
+                //             borderRadius: BorderRadius.circular(5)),
+                //         child: Column(
+                //           mainAxisAlignment: MainAxisAlignment.center,
+                //           children: [
+                //             Image.asset(
+                //               topSelling[index],
+                //               width: 150,
+                //               height: 130,
+                //               fit: BoxFit.cover,
+                //             ),
+                //             3.heightBox,
+                //             makeText(
+                //                 text: topSellingName[index],
+                //                 size: 14.0,
+                //                 fontFamily: mainFont,
+                //                 fontweight: FontWeight.bold,
+                //                 color: Colors.green),
+                //             2.heightBox,
+                //             makeText(
+                //                 text: topSellingPrice[index],
+                //                 size: 16.0,
+                //                 fontFamily: mainFont,
+                //                 fontweight: FontWeight.bold,
+                //                 color: Colors.red)
+                //           ],
+                //         ),
+                //       );
+                //     }),
                 10.heightBox,
                 Align(
                   alignment: Alignment.topLeft,

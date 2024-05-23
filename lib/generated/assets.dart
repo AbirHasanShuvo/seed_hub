@@ -26,7 +26,7 @@ class Assets {
   static const String iconsWifi = 'assets/icons/wifi.png';
   static const String iconsWoman = 'assets/icons/woman.png';
   static const String imagesBridal = 'assets/images/bridal.jpg';
-  static const String imagesIPhone 12 = 'assets/images/iPhone 12.jpg';
+  static const String imagesIPhone_12 = 'assets/images/iPhone 12.jpg';
   static const String imagesJersey = 'assets/images/jersey.jpg';
   static const String imagesLehenga = 'assets/images/lehenga.jpg';
   static const String imagesSlider1 = 'assets/images/slider_1.png';
@@ -41,5 +41,4 @@ class Assets {
   static const String imagesTp = 'assets/images/tp.jpeg';
   static const String imagesVivobook = 'assets/images/vivobook.jpg';
   static const String lottieSplash = 'assets/lottie/splash.json';
-
 }
