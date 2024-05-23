@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:seed_hub/services/firestore_services.dart';
+import 'package:seed_hub/views/category_screen/category_details.dart';
 
 import '../../common_widgets/feature_buttton.dart';
 import '../../common_widgets/text_widget.dart';
@@ -32,22 +34,7 @@ class HomeScreen extends StatelessWidget {
                       fontFamily: mainFont),
                 ),
                 10.heightBox,
-                VxSwiper.builder(
-                  height: 150,
-                  autoPlay: true,
-                  aspectRatio: 16 / 9,
-                  itemCount: secondSlider.length,
-                  enlargeCenterPage: true,
-                  itemBuilder: (context, index) => Image.asset(
-                    secondSlider[index],
-                    fit: BoxFit.fill,
-                  )
-                      .box
-                      .rounded
-                      .clip(Clip.antiAlias)
-                      .margin(const EdgeInsets.symmetric(horizontal: 8))
-                      .make(),
-                ),
+
                 14.heightBox,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -138,7 +125,9 @@ class HomeScreen extends StatelessWidget {
                                         color: Colors.red)
                                   ],
                                 ),
-                              ).onTap(() {VxToast.show(context, msg: featureData[index]['p_name']);}).box.make();
+                              ).onTap(() {
+                                Get.to(()=> CategoryDetails(data: featureData[index]));
+                              }).box.make();
                             });
                       }
                     }),

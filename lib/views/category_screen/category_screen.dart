@@ -31,41 +31,60 @@ class CategoryScreen extends StatelessWidget {
                         size: 16.0,
                         fontFamily: mainFont)),
                 10.heightBox,
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  child: Row(
-                      children: List.generate(
-                    3,
-                    (index) => Container(
-                        decoration: BoxDecoration(
-                            color: whiteColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        padding: const EdgeInsets.only(
-                            left: 10, right: 10, bottom: 10),
-                        child: Column(
-                          children: [
-                            makeText(
-                                text: categoryOfferText[index],
-                                size: 17.0,
-                                color: categoryOfferColors[index],
-                                fontFamily: mainFont,
-                                fontweight: FontWeight.bold),
-                            makeText(
-                                text: categoryOfferProductname[index],
-                                size: 14.0,
-                                color: Colors.red,
-                                fontFamily: mainFont,
-                                fontweight: FontWeight.bold),
-                            Image.asset(
-                              categoryOffer[index],
-                              height: screenHeight(context) * 0.3,
-                              width: screenWidth(context) * 0.8,
-                            ),
-                          ],
-                        )).box.padding(const EdgeInsets.only(right: 7)).make(),
-                  )),
+
+
+                VxSwiper.builder(
+                  height: 150,
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  itemCount: secondSlider.length,
+                  enlargeCenterPage: true,
+                  itemBuilder: (context, index) => Image.asset(
+                    secondSlider[index],
+                    fit: BoxFit.fill,
+                  )
+                      .box
+                      .rounded
+                      .clip(Clip.antiAlias)
+                      .margin(const EdgeInsets.symmetric(horizontal: 8))
+                      .make(),
                 ),
+
+                // SingleChildScrollView(
+                //   scrollDirection: Axis.horizontal,
+                //   physics: const BouncingScrollPhysics(),
+                //   child: Row(
+                //       children: List.generate(
+                //     3,
+                //     (index) => Container(
+                //         decoration: BoxDecoration(
+                //             color: whiteColor,
+                //             borderRadius: BorderRadius.circular(10)),
+                //         padding: const EdgeInsets.only(
+                //             left: 10, right: 10, bottom: 10),
+                //         child: Column(
+                //           children: [
+                //             makeText(
+                //                 text: categoryOfferText[index],
+                //                 size: 17.0,
+                //                 color: categoryOfferColors[index],
+                //                 fontFamily: mainFont,
+                //                 fontweight: FontWeight.bold),
+                //             makeText(
+                //                 text: categoryOfferProductname[index],
+                //                 size: 14.0,
+                //                 color: Colors.red,
+                //                 fontFamily: mainFont,
+                //                 fontweight: FontWeight.bold),
+                //             Image.asset(
+                //               categoryOffer[index],
+                //               height: screenHeight(context) * 0.3,
+                //               width: screenWidth(context) * 0.8,
+                //             ),
+                //           ],
+                //         )).box.padding(const EdgeInsets.only(right: 7)).make(),
+                //   )),
+                // ),
                 15.heightBox,
                 Column(
                   children: [
