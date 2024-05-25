@@ -43,6 +43,9 @@ class HomeScreen extends StatelessWidget {
                       (index) => Container(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 30),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
                             child: Column(
                               children: [
                                 Image.asset(topIcons[index]),
@@ -55,9 +58,6 @@ class HomeScreen extends StatelessWidget {
                                     fontweight: FontWeight.bold)
                               ],
                             ),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20)),
                           )),
                 ),
                 10.heightBox,
@@ -71,11 +71,11 @@ class HomeScreen extends StatelessWidget {
                 ),
                 10.heightBox,
                 FutureBuilder(
-                    future: FirestoreServices.getFeatureProducts(),
+                    future: FirestoreServices.getTopProducts(),
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (!snapshot.hasData) {
-                        return Center(
+                        return const Center(
                           child: Text('no value'),
                         );
                       } else if (snapshot.data!.docs.isEmpty) {
@@ -99,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                               return Container(
                                 decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5)),
+                                    borderRadius: BorderRadius.circular(10)),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -177,34 +177,67 @@ class HomeScreen extends StatelessWidget {
                         fontFamily: mainFont,
                         fontweight: FontWeight.bold),
                   ),
+                  10.heightBox,
                   Container(
-                      padding: const EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(10),
                           color: Colors.green),
                       child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
-                          child: Row(
-                              children: List.generate(
-                                  6,
-                                  (index) => Container(
-                                    padding: const EdgeInsets.all(8),
-                                        decoration: BoxDecoration(
-                                          color: whiteColor,
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        child: Column(
-                                          children: [
-                                            Image.asset(
-                                              iPhoneTop,
-                                              width: 150,
-                                              height: 130,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ],
-                                        ),
-                                      ).box.padding(const EdgeInsets.only(right: 8)).make()
-                              ))))
+                          child: FutureBuilder(
+                            future: FirestoreServices.getFeatureProduct(),
+
+                            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if(!snapshot.hasData){
+                                return makeText(text: 'No data');
+                              }
+                              else if(snapshot.data!.docs.isEmpty){
+                                return const Center(child: Text('No data is as feature'),);
+                              }else{
+                                var featureData = snapshot.data!.docs;
+                                return  Row(
+                                    children: List.generate(
+                                        featureData.length,
+                                            (index) => Container(
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                              color: whiteColor,
+                                              borderRadius:
+                                              BorderRadius.circular(10)),
+                                          child: Column(
+                                            children: [
+                                              Image.network(
+                                                featureData[index]['p_imgs'][0],
+                                                width: 150,
+                                                height: 130,
+                                                fit: BoxFit.cover,
+                                              ),
+                                              Text(
+                                                featureData[index]['p_name'],
+                                                style: TextStyle(
+                                                    fontSize: 14.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontFamily: mainFont,
+                                                    color: Colors.green,
+                                                    overflow: TextOverflow.ellipsis),
+                                              ),
+                                              2.heightBox,
+                                              makeText(
+                                                  text : featureData[index]['p_price'],
+                                                  size: 16.0,
+                                                  fontFamily: mainFont,
+                                                  fontweight: FontWeight.bold,
+                                                  color: Colors.red)
+                                            ],
+                                          ),
+                                        ).box.padding(const EdgeInsets.only(right: 20)).make()
+                                    ));
+                              }
+                            },
+
+                          )))
                 ]),
               ],
             ),

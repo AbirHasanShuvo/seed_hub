@@ -3,7 +3,7 @@ import 'package:seed_hub/const/firebase_const.dart';
 export 'package:velocity_x/velocity_x.dart';
 
 class FirestoreServices {
-  static getFeatureProducts() {
+  static getTopProducts() {
     return firestore
         .collection(productsCollection)
         .where('top_selling', isEqualTo: true)
@@ -14,6 +14,10 @@ class FirestoreServices {
     return firestore
         .collection(productsCollection)
         .where('top_selling', isEqualTo: true)
-        .snapshots();
+        .get();
+  }
+
+  static getFeatureProduct(){
+    return firestore.collection(productsCollection).where('is_featured', isEqualTo: true).get();
   }
 }
