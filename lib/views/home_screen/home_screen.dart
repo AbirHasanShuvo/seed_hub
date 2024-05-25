@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seed_hub/const/images.dart';
 import 'package:seed_hub/services/firestore_services.dart';
 import 'package:seed_hub/views/category_screen/category_details.dart';
 
@@ -34,7 +35,6 @@ class HomeScreen extends StatelessWidget {
                       fontFamily: mainFont),
                 ),
                 10.heightBox,
-
                 14.heightBox,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -91,8 +91,8 @@ class HomeScreen extends StatelessWidget {
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
-                                    mainAxisSpacing: 4,
-                                    crossAxisSpacing: 4,
+                                    mainAxisSpacing: 10,
+                                    crossAxisSpacing: 10,
                                     mainAxisExtent: 220),
                             itemCount: featureData.length,
                             itemBuilder: (BuildContext context, int index) {
@@ -110,12 +110,15 @@ class HomeScreen extends StatelessWidget {
                                       fit: BoxFit.cover,
                                     ),
                                     3.heightBox,
-                                    makeText(
-                                        text: featureData[index]['p_name'],
-                                        size: 14.0,
-                                        fontFamily: mainFont,
-                                        fontweight: FontWeight.bold,
-                                        color: Colors.green),
+                                    Text(
+                                      featureData[index]['p_name'],
+                                      style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: mainFont,
+                                          color: Colors.green,
+                                          overflow: TextOverflow.ellipsis),
+                                    ),
                                     2.heightBox,
                                     makeText(
                                         text: featureData[index]['p_price'],
@@ -125,54 +128,16 @@ class HomeScreen extends StatelessWidget {
                                         color: Colors.red)
                                   ],
                                 ),
-                              ).onTap(() {
-                                Get.to(()=> CategoryDetails(data: featureData[index]));
-                              }).box.make();
+                              )
+                                  .onTap(() {
+                                    Get.to(() => CategoryDetails(
+                                        data: featureData[index]));
+                                  })
+                                  .box
+                                  .make();
                             });
                       }
                     }),
-                // GridView.builder(
-                //     shrinkWrap: true,
-                //     physics: const NeverScrollableScrollPhysics(),
-                //     gridDelegate:
-                //         const SliverGridDelegateWithFixedCrossAxisCount(
-                //             crossAxisCount: 2,
-                //             mainAxisSpacing: 4,
-                //             crossAxisSpacing: 4,
-                //             mainAxisExtent: 220),
-                //     itemCount: 6,
-                //     itemBuilder: (BuildContext context, int index) {
-                //       return Container(
-                //         decoration: BoxDecoration(
-                //             color: Colors.white,
-                //             borderRadius: BorderRadius.circular(5)),
-                //         child: Column(
-                //           mainAxisAlignment: MainAxisAlignment.center,
-                //           children: [
-                //             Image.asset(
-                //               topSelling[index],
-                //               width: 150,
-                //               height: 130,
-                //               fit: BoxFit.cover,
-                //             ),
-                //             3.heightBox,
-                //             makeText(
-                //                 text: topSellingName[index],
-                //                 size: 14.0,
-                //                 fontFamily: mainFont,
-                //                 fontweight: FontWeight.bold,
-                //                 color: Colors.green),
-                //             2.heightBox,
-                //             makeText(
-                //                 text: topSellingPrice[index],
-                //                 size: 16.0,
-                //                 fontFamily: mainFont,
-                //                 fontweight: FontWeight.bold,
-                //                 color: Colors.red)
-                //           ],
-                //         ),
-                //       );
-                //     }),
                 10.heightBox,
                 Align(
                   alignment: Alignment.topLeft,
@@ -202,7 +167,6 @@ class HomeScreen extends StatelessWidget {
                             )).toList(),
                   ),
                 ),
-                15.heightBox,
                 10.heightBox,
                 Column(children: [
                   Align(
@@ -213,6 +177,34 @@ class HomeScreen extends StatelessWidget {
                         fontFamily: mainFont,
                         fontweight: FontWeight.bold),
                   ),
+                  Container(
+                      padding: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.green),
+                      child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                              children: List.generate(
+                                  6,
+                                  (index) => Container(
+                                    padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          color: whiteColor,
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: Column(
+                                          children: [
+                                            Image.asset(
+                                              iPhoneTop,
+                                              width: 150,
+                                              height: 130,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ],
+                                        ),
+                                      ).box.padding(const EdgeInsets.only(right: 8)).make()
+                              ))))
                 ]),
               ],
             ),
