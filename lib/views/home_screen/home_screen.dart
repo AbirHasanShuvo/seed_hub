@@ -35,7 +35,8 @@ class HomeScreen extends StatelessWidget {
                       fontFamily: mainFont),
                 ),
                 10.heightBox,
-                14.heightBox,
+
+                10.heightBox,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: List.generate(
