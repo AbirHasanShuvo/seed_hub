@@ -1,11 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:seed_hub/common_widgets/string.dart';
-import 'package:seed_hub/common_widgets/text_widget.dart';
 import 'package:seed_hub/const/const.dart';
-import 'package:seed_hub/const/images.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../const/list.dart';
@@ -23,24 +18,15 @@ class CategoryScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                8.heightBox,
-                Align(
-                    alignment: Alignment.topLeft,
-                    child: makeText(
-                        text: 'Special offers on',
-                        size: 16.0,
-                        fontFamily: mainFont)),
                 10.heightBox,
-
-
                 VxSwiper.builder(
                   height: 150,
                   autoPlay: true,
                   aspectRatio: 16 / 9,
-                  itemCount: secondSlider.length,
+                  itemCount: firstSlider.length,
                   enlargeCenterPage: true,
                   itemBuilder: (context, index) => Image.asset(
-                    secondSlider[index],
+                    firstSlider[index],
                     fit: BoxFit.fill,
                   )
                       .box
@@ -88,18 +74,51 @@ class CategoryScreen extends StatelessWidget {
                 15.heightBox,
                 Column(
                   children: [
+                    // GridView.builder(
+                    //     shrinkWrap: true,
+                    //     physics: const NeverScrollableScrollPhysics(),
+                    //     gridDelegate:
+                    //         const SliverGridDelegateWithFixedCrossAxisCount(
+                    //             crossAxisCount: 2,
+                    //
+                    //             mainAxisSpacing: 4,
+                    //             crossAxisSpacing: 4,
+                    //             mainAxisExtent: 170),
+                    //     itemCount: 9,
+                    //     itemBuilder: (BuildContext context, int index) {
+                    //       return Container(
+                    //         decoration: BoxDecoration(
+                    //             color: Colors.white,
+                    //             borderRadius: BorderRadius.circular(10)),
+                    //         child: Column(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             Image.asset(
+                    //               categoryIcons[index],
+                    //             ),
+                    //             2.heightBox,
+                    //             makeText(
+                    //                 text: categoryTexts[index],
+                    //                 size: 13.0,
+                    //                 fontFamily: mainFont),
+                    //           ],
+                    //         ).box.padding(const EdgeInsets.all(15)).make(),
+                    //       );
+                    //     }),
+
                     GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 3,
-                                mainAxisSpacing: 4,
-                                crossAxisSpacing: 4,
-                                mainAxisExtent: 170),
+                                mainAxisSpacing: 10,
+                                crossAxisSpacing: 10,
+                                mainAxisExtent: 220),
                         itemCount: 9,
                         itemBuilder: (BuildContext context, int index) {
                           return Container(
+                            padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10)),
@@ -108,16 +127,39 @@ class CategoryScreen extends StatelessWidget {
                               children: [
                                 Image.asset(
                                   categoryIcons[index],
+                                  width: 150,
+                                  height: 130,
+                                  // fit: BoxFit.cover,
+                                ),
+                                3.heightBox,
+                                Center(
+                                  child: Text(
+                                    categoryTexts[index],
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: mainFont,
+                                        color: Colors.green,
+                                        ),
+                                  ),
                                 ),
                                 2.heightBox,
-                                makeText(
-                                    text: categoryTexts[index],
-                                    size: 13.0,
-                                    fontFamily: mainFont),
+                                // makeText(
+                                //     text: featureData[index]['p_price'],
+                                //     size: 16.0,
+                                //     fontFamily: mainFont,
+                                //     fontweight: FontWeight.bold,
+                                //     color: Colors.red)
                               ],
-                            ).box.padding(const EdgeInsets.all(15)).make(),
-                          );
-                        }),
+                            ),
+                          )
+                              .onTap(() {
+                                // Get.to(() => CategoryDetails(
+                                //     data: featureData[index]));
+                              })
+                              .box
+                              .make();
+                        })
                   ],
                 ),
               ],
