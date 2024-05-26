@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
       BottomNavigationBarItem(
           icon: Image.asset(categoryPage), label: 'Categories'),
       BottomNavigationBarItem(icon: Image.asset(cartPage), label: 'Cart'),
-      BottomNavigationBarItem(icon: Image.asset(profilePage), label: 'Profile'),
+      BottomNavigationBarItem(icon: Image.asset(profilePage), label: 'Account'),
     ];
 
     var navBody = [

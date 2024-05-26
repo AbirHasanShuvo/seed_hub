@@ -30,7 +30,8 @@ class CategoryScreen extends StatelessWidget {
                                 crossAxisCount: 3,
                                 mainAxisSpacing: 10,
                                 crossAxisSpacing: 10,
-                                mainAxisExtent: 220),
+
+                                mainAxisExtent: 250),
                         itemCount: 9,
                         itemBuilder: (BuildContext context, int index) {
                           return Container(
@@ -52,10 +53,10 @@ class CategoryScreen extends StatelessWidget {
                                   child: Text(
                                     categoryTexts[index],
                                     style: TextStyle(
-                                      fontSize: 14.0,
+                                      fontSize: 15.0,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: mainFont,
-                                      color: Colors.green,
+                                      color: blackColor,
                                     ),
                                   ),
                                 ),
