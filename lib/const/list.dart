@@ -92,3 +92,11 @@ const categoryTexts = [
   'Pets & Supplies',
   'Toys'
 ];
+
+//for profile screen
+
+const orderinProfile=[
+  'Your Orders',
+  'Your Carts',
+  'Your Wish'
+];

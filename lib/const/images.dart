@@ -63,3 +63,6 @@ const sportsCategory = "assets/icons/sports.png";
 const healthCategory = "assets/icons/healthcare.png";
 const petfoodCategory = "assets/icons/petfood.png";
 const toysCategory = "assets/icons/toys.png";
+
+//for profile screen
+const dummyProfile = "assets/icons/man.png";
