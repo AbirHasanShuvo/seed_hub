@@ -23,6 +23,7 @@ class Assets {
   static const String iconsHotdeal = 'assets/icons/hotdeal.png';
   static const String iconsMan = 'assets/icons/man.png';
   static const String iconsNetwork = 'assets/icons/network.png';
+  static const String iconsOrder = 'assets/icons/order.png';
   static const String iconsPetfood = 'assets/icons/petfood.png';
   static const String iconsPhone = 'assets/icons/phone.png';
   static const String iconsShopping = 'assets/icons/shopping.png';
@@ -34,6 +35,7 @@ class Assets {
   static const String iconsTwitterLogo = 'assets/icons/twitter_logo.png';
   static const String iconsUser = 'assets/icons/user.png';
   static const String iconsWifi = 'assets/icons/wifi.png';
+  static const String iconsWishlist = 'assets/icons/wishlist.png';
   static const String iconsWoman = 'assets/icons/woman.png';
   static const String imagesArcher = 'assets/images/archer.jpg';
   static const String imagesBikes = 'assets/images/bikes.png';

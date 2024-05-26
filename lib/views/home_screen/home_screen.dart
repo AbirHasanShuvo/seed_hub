@@ -36,6 +36,23 @@ class HomeScreen extends StatelessWidget {
                 ),
                 10.heightBox,
 
+                VxSwiper.builder(
+                  height: 150,
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  itemCount: firstSlider.length,
+                  enlargeCenterPage: true,
+                  itemBuilder: (context, index) => Image.asset(
+                    firstSlider[index],
+                    fit: BoxFit.fill,
+                  )
+                      .box
+                      .rounded
+                      .clip(Clip.antiAlias)
+                      .margin(const EdgeInsets.symmetric(horizontal: 8))
+                      .make(),
+                ),
+
                 10.heightBox,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

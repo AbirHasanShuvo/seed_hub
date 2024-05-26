@@ -66,3 +66,7 @@ const toysCategory = "assets/icons/toys.png";
 
 //for profile screen
 const dummyProfile = "assets/icons/man.png";
+
+const yourOrder = "assets/icons/order.png";
+const yourCarts = "assets/icons/carts.png";
+const yourWishlist = "assets/icons/wishlist.png";

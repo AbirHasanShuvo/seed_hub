@@ -95,8 +95,8 @@ const categoryTexts = [
 
 //for profile screen
 
-const orderinProfile=[
-  'Your Orders',
-  'Your Carts',
-  'Your Wish'
-];
+const orderinProfile = ['Your Orders', 'Your Carts', 'Your Wish'];
+
+const orderToGo = ['Order items', 'Cart items', 'Wishlist items'];
+
+const orderToGoItems = [yourOrder, yourCarts, yourWishlist];
