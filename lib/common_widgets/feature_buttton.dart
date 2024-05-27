@@ -12,7 +12,12 @@ Widget featureButton({title, icon}) {
         width: 40,
       ),
       10.widthBox,
-      makeText(text: title, fontFamily: mainFont, size: 14.0),
+      makeText(
+          text: title,
+          fontFamily: mainFont,
+          size: 14.0,
+          color: Colors.green,
+          fontweight: FontWeight.bold),
     ],
   )
       .box

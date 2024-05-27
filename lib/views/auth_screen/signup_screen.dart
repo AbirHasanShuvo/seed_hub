@@ -27,11 +27,12 @@ class SignupScreen extends StatelessWidget {
       body: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Colors.blue, Colors.green],
-          ),
+          color: Colors.blue
+          // gradient: LinearGradient(
+          //   begin: Alignment.topLeft,
+          //   end: Alignment.bottomRight,
+          //   colors: [Colors.blue, Colors.green],
+          // ),
         ),
         child: Column(
           children: [

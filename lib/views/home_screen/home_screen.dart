@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                         AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (!snapshot.hasData) {
                         return const Center(
-                          child: Text('no value'),
+                          child: Text('loading....'),
                         );
                       } else if (snapshot.data!.docs.isEmpty) {
                         return Center(

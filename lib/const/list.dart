@@ -82,7 +82,7 @@ const categoryIcons = [
 ];
 
 const categoryTexts = [
-  'Fashion and Apparel',
+  'Fashion & Apparel',
   'Electronics & Gadgets',
   'Home & Furniture',
   'Beauty & Personal care',

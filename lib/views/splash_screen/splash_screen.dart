@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 5000), () {
       Get.to(() => HelpingScreen());
     });
   }
@@ -34,11 +34,12 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Container(
             decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Colors.blue, Colors.green],
-              ),
+              color: Colors.blue
+              // gradient: LinearGradient(
+              //   begin: Alignment.topLeft,
+              //   end: Alignment.bottomRight,
+              //   colors: [Colors.blue, Colors.green],
+              // ),
             ),
             // height: MediaQuery.of(context).size.height * 0.23,
             width: double.infinity,
@@ -91,7 +92,7 @@ class _SplashScreenState extends State<SplashScreen> {
             padding: EdgeInsets.only(bottom: screenHeight(context) * 0.08),
             child: CircularPercentIndicator(
               animation: true,
-              animationDuration: 500,
+              animationDuration: 5000,
               radius: 40,
               lineWidth: 10,
               percent: 1,

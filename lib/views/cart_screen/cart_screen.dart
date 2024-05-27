@@ -72,11 +72,13 @@ class CartScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.blue, Colors.green],
-                      ),
+                      color: Colors.blue,
+
+                      // gradient: const LinearGradient(
+                      //   begin: Alignment.topLeft,
+                      //   end: Alignment.bottomRight,
+                      //   colors: [Colors.blue, Colors.green],
+                      // ),
                     ),
                     child: Center(
                       child: makeText(

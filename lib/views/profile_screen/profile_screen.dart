@@ -22,20 +22,22 @@ class ProfileScreen extends StatelessWidget {
                 decoration: const BoxDecoration(
                   borderRadius:
                       BorderRadius.only(bottomRight: Radius.circular(50)),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.blue, Colors.green],
-                  ),
+                  color: Colors.blue
+                  // gradient: LinearGradient(
+                  //   begin: Alignment.topLeft,
+                  //   end: Alignment.bottomRight,
+                  //   colors: [Colors.blue, Colors.green],
+                  // ),
                 ),
               ),
               Container(
                 decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.blue, Colors.green],
-                  ),
+                  color: Colors.blue
+                  // gradient: LinearGradient(
+                  //   begin: Alignment.topLeft,
+                  //   end: Alignment.bottomRight,
+                  //   colors: [Colors.blue, Colors.green],
+                  // ),
                 ),
                 child: Container(
                   height: screenHeight(context) * 0.5,

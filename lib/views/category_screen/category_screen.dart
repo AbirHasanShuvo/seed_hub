@@ -64,7 +64,7 @@ class CategoryScreen extends StatelessWidget {
                             ),
                           )
                               .onTap(() {
-                                Get.to(() => CategoryDetails());
+                                Get.to(() => CategoryDetails(categoryName: categoryTexts[index],));
                               })
                               .box
                               .make();
