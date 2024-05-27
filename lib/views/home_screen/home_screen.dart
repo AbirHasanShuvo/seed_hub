@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:seed_hub/const/images.dart';
 import 'package:seed_hub/services/firestore_services.dart';
 import 'package:seed_hub/views/category_screen/category_details.dart';
+import 'package:seed_hub/views/product_details_screen/product_details_screen.dart';
 
 import '../../common_widgets/feature_buttton.dart';
 import '../../common_widgets/text_widget.dart';
@@ -148,7 +149,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               )
                                   .onTap(() {
-                                    Get.to(() => CategoryDetails(
+                                    Get.to(() => ProductDetailsScreen(
                                         data: featureData[index]));
                                   })
                                   .box

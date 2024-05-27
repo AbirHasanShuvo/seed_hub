@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:seed_hub/const/const.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../const/list.dart';
+import 'category_details.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
@@ -17,8 +19,6 @@ class CategoryScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-
-
                 15.heightBox,
                 Column(
                   children: [
@@ -30,7 +30,6 @@ class CategoryScreen extends StatelessWidget {
                                 crossAxisCount: 3,
                                 mainAxisSpacing: 10,
                                 crossAxisSpacing: 10,
-
                                 mainAxisExtent: 250),
                         itemCount: 9,
                         itemBuilder: (BuildContext context, int index) {
@@ -61,18 +60,11 @@ class CategoryScreen extends StatelessWidget {
                                   ),
                                 ),
                                 2.heightBox,
-                                // makeText(
-                                //     text: featureData[index]['p_price'],
-                                //     size: 16.0,
-                                //     fontFamily: mainFont,
-                                //     fontweight: FontWeight.bold,
-                                //     color: Colors.red)
                               ],
                             ),
                           )
                               .onTap(() {
-                                // Get.to(() => CategoryDetails(
-                                //     data: featureData[index]));
+                                Get.to(() => CategoryDetails());
                               })
                               .box
                               .make();
