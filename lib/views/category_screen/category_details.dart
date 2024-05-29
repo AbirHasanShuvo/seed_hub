@@ -16,7 +16,9 @@ class CategoryDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.arrow_back_ios),
+        leading: const Icon(Icons.arrow_back_ios).onTap(() {
+          Navigator.of(context).pop();
+        }).box.make(),
         iconTheme: const IconThemeData(color: Colors.white),
         flexibleSpace: Container(
           decoration: const BoxDecoration(

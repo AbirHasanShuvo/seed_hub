@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seed_hub/common_widgets/text_widget.dart';
@@ -22,7 +23,12 @@ class ProductDetailsScreen extends StatelessWidget {
           IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
           IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
         ],
-        leading: const Icon(Icons.arrow_back_ios),
+        leading: const Icon(Icons.arrow_back_ios)
+            .onTap(() {
+              Navigator.of(context).pop();
+            })
+            .box
+            .make(),
         iconTheme: const IconThemeData(color: Colors.white),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -234,6 +240,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     fontFamily: mainFont,
                     fontweight: FontWeight.bold),
                 10.heightBox,
+
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
@@ -242,6 +249,81 @@ class ProductDetailsScreen extends StatelessWidget {
                   child: makeText(
                       text: data['p_desc'], size: 15.0, fontFamily: mainFont),
                 ),
+                10.heightBox,
+                makeText(
+                    text: 'You may also love',
+                    size: 15.0,
+                    fontFamily: mainFont,
+                    fontweight: FontWeight.bold),
+                10.heightBox,
+                Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey.shade200),
+                    child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        child: FutureBuilder(
+                          future: FirestoreServices.getProductByCategory(
+                              categoryName: data['p_category']),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (!snapshot.hasData) {
+                              return makeText(text: 'No data');
+                            } else if (snapshot.data!.docs.isEmpty) {
+                              return const Center(
+                                child: Text('No data is as feature'),
+                              );
+                            } else {
+                              var featureData = snapshot.data!.docs;
+                              return Row(
+                                  children: List.generate(
+                                      featureData.length,
+                                      (index) => Container(
+                                            padding: const EdgeInsets.all(10),
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Column(
+                                              children: [
+                                                Image.network(
+                                                  featureData[index]['p_imgs']
+                                                      [0],
+                                                  width: 150,
+                                                  height: 130,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                                Text(
+                                                  featureData[index]['p_name'],
+                                                  style: TextStyle(
+                                                      fontSize: 14.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily: mainFont,
+                                                      color: Colors.green,
+                                                      overflow: TextOverflow
+                                                          .ellipsis),
+                                                ),
+                                                2.heightBox,
+                                                makeText(
+                                                    text: featureData[index]
+                                                        ['p_price'],
+                                                    size: 16.0,
+                                                    fontFamily: mainFont,
+                                                    fontweight: FontWeight.bold,
+                                                    color: Colors.red)
+                                              ],
+                                            ),
+                                          )
+                                              .box
+                                              .padding(const EdgeInsets.only(
+                                                  right: 20))
+                                              .make()));
+                            }
+                          },
+                        )))
               ],
             ),
           ),

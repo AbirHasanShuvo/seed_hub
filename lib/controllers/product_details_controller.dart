@@ -4,7 +4,7 @@ class ProductDetailsController extends GetxController {
   var colorIndex = 0.obs;
   var quantityIndex = 0.obs;
 
-  var price = 0.obs ;
+  var price = 0.obs;
 
   changeColorIndex({index}) {
     colorIndex.value = index;

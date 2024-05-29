@@ -17,11 +17,17 @@ class FirestoreServices {
         .get();
   }
 
-  static getProductByCategory({String? categoryName}){
-    return firestore.collection(productsCollection).where('p_category', isEqualTo: categoryName!).get();
+  static getProductByCategory({String? categoryName}) {
+    return firestore
+        .collection(productsCollection)
+        .where('p_category', isEqualTo: categoryName!)
+        .get();
   }
 
-  static getFeatureProduct(){
-    return firestore.collection(productsCollection).where('is_featured', isEqualTo: true).get();
+  static getFeatureProduct() {
+    return firestore
+        .collection(productsCollection)
+        .where('is_featured', isEqualTo: true)
+        .get();
   }
 }
