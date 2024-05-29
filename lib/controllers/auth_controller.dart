@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:seed_hub/const/firebase_const.dart';
 import 'package:seed_hub/views/home_screen/home_screen.dart';
@@ -8,6 +8,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 class AuthController extends GetxController {
   var isLoading = false.obs;
+
   signInWithGoogle() async {
     try {
       final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -67,5 +68,22 @@ class AuthController extends GetxController {
 
   Future<void> signOutNew() async {
     await FirebaseAuth.instance.signOut();
+  }
+
+  //storing the data of authenticate users
+  userDataStore(name, password, email) async {
+    DocumentReference store =
+        firestore.collection('user').doc(currentUser!.uid);
+
+    store.set({
+      'name': name,
+      'email': email,
+      'password': password,
+      'imgurl': '0',
+      'id': currentUser!.uid,
+      'cart_count': '00',
+      'order_count': '00',
+      'wishlist_count': '00'
+    });
   }
 }

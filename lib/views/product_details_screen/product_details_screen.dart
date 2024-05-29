@@ -246,8 +246,10 @@ class ProductDetailsScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white),
-                  child: makeText(
-                      text: data['p_desc'], size: 15.0, fontFamily: mainFont),
+                  child: Center(
+                    child: makeText(
+                        text: data['p_desc'], size: 15.0, fontFamily: mainFont),
+                  ),
                 ),
                 10.heightBox,
                 makeText(
