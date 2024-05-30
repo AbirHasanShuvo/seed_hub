@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seed_hub/common_widgets/text_widget.dart';
 import 'package:seed_hub/const/colors.dart';
-import 'package:seed_hub/const/firebase_const.dart';
 import 'package:seed_hub/controllers/product_details_controller.dart';
 
 import '../../const/const.dart';
@@ -77,8 +76,28 @@ class ProductDetailsScreen extends StatelessWidget {
           ),
         )
             .onTap(() async {
-              // controller.addToCart(data);
-          print(firestore.collection('products').snapshots());
+              int colorIndex = controller.colorIndex.value;
+              int quantity = controller.quantityIndex.value;
+              int price = controller.price.value;
+
+              if (quantity > 0) {
+                controller.addToCart(
+                    data['p_name'],
+                    data['p_imgs'][0],
+                    data['p_seller'],
+                    data['p_colors'][colorIndex],
+                    quantity,
+                    price,
+                    context,
+                    data['vendor_id']);
+                VxToast.show(context, msg: 'Item added', textSize: 15.0);
+              } else {
+                VxToast.show(
+                  context,
+                  msg: 'Your quantity is 0',
+                  textSize: 15.0,
+                );
+              }
             })
             .box
             .make(),

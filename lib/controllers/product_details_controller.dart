@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:seed_hub/const/firebase_const.dart';
 
@@ -24,15 +23,17 @@ class ProductDetailsController extends GetxController {
     price.value = currentPrice * quantityIndex.value;
   }
 
-  addToCart(data) async {
-    DocumentReference cartStore = firestore
-        .collection('cs')
-        .doc(currentUser!.uid)
-        .collection('newwork').doc();
-
-    cartStore.set({
-      'name' : 'Hence',
-      'age' : '25'
+  addToCart(title, img, sellername, color, quantity, total_price, context,
+      vendorId) async {
+    await firestore.collection('carts').doc().set({
+      'title': title,
+      'img': img,
+      'sellername': sellername,
+      'color': color,
+      'quantity': quantity,
+      'total_price': total_price,
+      'vendorId': vendorId,
+      'added_by': currentUser!.uid
     });
   }
 }

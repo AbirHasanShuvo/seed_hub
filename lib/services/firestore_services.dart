@@ -32,7 +32,12 @@ class FirestoreServices {
   }
 
   static gegureProduct() {
+    return firestore.collection(productsCollection).id;
+  }
+
+  static getCartItems() {
     return firestore
-        .collection(productsCollection).id;
+        .collection('carts')
+        .where('added_by', isEqualTo: currentUser!.uid).get();
   }
 }

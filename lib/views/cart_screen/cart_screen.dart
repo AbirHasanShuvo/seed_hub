@@ -1,7 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:seed_hub/common_widgets/text_widget.dart';
 import 'package:seed_hub/const/const.dart';
-import 'package:seed_hub/const/images.dart';
 import 'package:seed_hub/services/firestore_services.dart';
 
 class CartScreen extends StatelessWidget {
@@ -9,6 +9,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var totalPrice = 1.0;
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
         body: SafeArea(
@@ -24,42 +25,81 @@ class CartScreen extends StatelessWidget {
                       fontweight: FontWeight.bold,
                       fontFamily: mainFont),
                   10.heightBox,
-                  Column(
-                    children: List.generate(
-                        4,
-                        (index) => Container(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: ListTile(
-                                onTap: () {
-                                  VxToast.show(context,
-                                      msg: "i am also working bro");
-                                },
-                                leading: Image.asset(routerOffer),
-                                title: makeText(
-                                    text: 'TP-Link archer c54',
-                                    fontFamily: mainFont,
-                                    size: 15.0),
-                                subtitle: makeText(
-                                    text: '2350 Taka',
-                                    color: Colors.red,
-                                    size: 17.0,
-                                    fontFamily: mainFont),
-                                trailing: const Icon(Icons.delete)
-                                    .onTap(() {
-                                      VxToast.show(context,
-                                          msg: "i am working bro");
-                                    })
-                                    .box
-                                    .make(),
-                              ),
-                            )
-                                .box
-                                .margin(const EdgeInsets.only(bottom: 7))
-                                .make()),
-                  ),
+                  FutureBuilder(
+                      future: FirestoreServices.getCartItems(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (!snapshot.hasData) {
+                          return const Center(
+                            child: Text('loading....'),
+                          );
+                        } else if (snapshot.data!.docs.isEmpty) {
+                          return Center(
+                            child: "No featured product found".text.make(),
+                          );
+                        } else {
+                          var cartItems = snapshot.data!.docs;
+                          //calculate the total price here
+                          for (int i = 0; i < cartItems.length; i++) {
+                            totalPrice =
+                                (totalPrice + cartItems[i]['total_price']);
+                          }
+                          return Column(
+                            children: List.generate(
+                                cartItems.length,
+                                (index) => Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: ListTile(
+                                        onTap: () {
+                                          VxToast.show(context,
+                                              msg: "i am also working bro");
+                                        },
+                                        leading: Image.network(
+                                            cartItems[index]['img']),
+                                        title: makeText(
+                                            text: cartItems[index]['title'],
+                                            fontFamily: mainFont,
+                                            size: 15.0),
+                                        subtitle: Row(
+                                          children: [
+                                            Text(
+                                              '${cartItems[index]['total_price'].toString()}৳',
+                                              style: TextStyle(
+                                                  color: Colors.red,
+                                                  fontSize: 15.0,
+                                                  fontFamily: mainFont),
+                                            ),
+                                            5.widthBox,
+                                            Text(
+                                              ' (x${cartItems[index]['quantity'].toString()})',
+                                              style: TextStyle(
+                                                  color: Colors.red,
+                                                  fontSize: 13.0,
+                                                  fontFamily: mainFont),
+                                            ),
+                                          ],
+                                        ),
+                                        trailing: const Icon(Icons.delete)
+                                            .onTap(() {
+                                              VxToast.show(context,
+                                                  msg: "i am working bro");
+                                            })
+                                            .box
+                                            .make(),
+                                      ),
+                                    )
+                                        .box
+                                        .margin(
+                                            const EdgeInsets.only(bottom: 7))
+                                        .make()),
+                          );
+                        }
+                      }),
                   10.heightBox,
                   makeText(
                       text: 'Total price : 2350 tk',
@@ -82,16 +122,18 @@ class CartScreen extends StatelessWidget {
                     ),
                     child: Center(
                       child: makeText(
-                        text: 'Place Order',
-                        size: 20.0,
-                        fontFamily: mainFont,
-                        fontweight: FontWeight.bold,
-                        color: Colors.white
-                      ),
+                          text: 'Place Order',
+                          size: 20.0,
+                          fontFamily: mainFont,
+                          fontweight: FontWeight.bold,
+                          color: Colors.white),
                     ),
-                  ).onTap(() {
-                    VxToast.show(context, msg: 'Place order is working');
-                  }).box.make(),
+                  )
+                      .onTap(() {
+                        VxToast.show(context, msg: '$totalPrice');
+                      })
+                      .box
+                      .make(),
                 ],
               ),
             ),

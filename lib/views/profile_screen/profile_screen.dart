@@ -6,6 +6,7 @@ import 'package:seed_hub/const/images.dart';
 import 'package:seed_hub/const/list.dart';
 import 'package:seed_hub/services/firestore_services.dart';
 import 'package:seed_hub/views/profile_screen/edit_profile_screen.dart';
+import 'package:seed_hub/views/testing_page/testing_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -133,6 +134,9 @@ class ProfileScreen extends StatelessWidget {
                         )
                             .onTap(() {
                               VxToast.show(context, msg: '$index');
+                              if(index == 1){
+                                Get.to(()=>TestingScreen());
+                              }
                             })
                             .box
                             .margin(const EdgeInsets.only(bottom: 7))
