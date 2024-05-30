@@ -1,11 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:seed_hub/common_widgets/text_widget.dart';
 import 'package:seed_hub/const/const.dart';
 import 'package:seed_hub/const/images.dart';
 import 'package:seed_hub/const/list.dart';
 import 'package:seed_hub/services/firestore_services.dart';
+import 'package:seed_hub/views/profile_screen/edit_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -20,25 +20,24 @@ class ProfileScreen extends StatelessWidget {
               Container(
                 height: screenHeight(context) * 0.3,
                 decoration: const BoxDecoration(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(50)),
-                  color: Colors.blue
-                  // gradient: LinearGradient(
-                  //   begin: Alignment.topLeft,
-                  //   end: Alignment.bottomRight,
-                  //   colors: [Colors.blue, Colors.green],
-                  // ),
-                ),
+                    borderRadius:
+                        BorderRadius.only(bottomRight: Radius.circular(50)),
+                    color: Colors.blue
+                    // gradient: LinearGradient(
+                    //   begin: Alignment.topLeft,
+                    //   end: Alignment.bottomRight,
+                    //   colors: [Colors.blue, Colors.green],
+                    // ),
+                    ),
               ),
               Container(
-                decoration: const BoxDecoration(
-                  color: Colors.blue
-                  // gradient: LinearGradient(
-                  //   begin: Alignment.topLeft,
-                  //   end: Alignment.bottomRight,
-                  //   colors: [Colors.blue, Colors.green],
-                  // ),
-                ),
+                decoration: const BoxDecoration(color: Colors.blue
+                    // gradient: LinearGradient(
+                    //   begin: Alignment.topLeft,
+                    //   end: Alignment.bottomRight,
+                    //   colors: [Colors.blue, Colors.green],
+                    // ),
+                    ),
                 child: Container(
                   height: screenHeight(context) * 0.5,
                   decoration: const BoxDecoration(
@@ -57,7 +56,12 @@ class ProfileScreen extends StatelessWidget {
               height: screenWidth(context) * .4,
               width: screenWidth(context) * .4,
               child: Image.asset(dummyProfile),
-            ),
+            )
+                .onTap(() {
+                  Get.to(()=>EditProfileScreen());
+                })
+                .box
+                .make(),
           ),
 
           //in the below approach its possible to use column in a good way into the stack
@@ -86,11 +90,13 @@ class ProfileScreen extends StatelessWidget {
                                 children: [
                                   makeText(
                                       text: orderinProfile[index],
-                                      size: 13.0, fontFamily: mainFont),
+                                      size: 13.0,
+                                      fontFamily: mainFont),
                                   makeText(
                                       text: '100',
                                       size: 19.0,
-                                      fontweight: FontWeight.bold, fontFamily: mainFont)
+                                      fontweight: FontWeight.bold,
+                                      fontFamily: mainFont)
                                 ],
                               ),
                             )),
@@ -100,25 +106,37 @@ class ProfileScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       children: List.generate(
-                          3,
-                          (index) => Container(
-                            padding: const EdgeInsets.all(7),
-                           decoration: BoxDecoration( color: Colors.grey.shade100, borderRadius: BorderRadius.circular(10)),
-                            child: Column(children: [
-                             Row(
-                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                               children: [
-                                Image.asset(orderToGoItems[index]),
-                                 makeText(text: orderToGo[index], size: 14.0, fontweight: FontWeight.bold, fontFamily: mainFont),
-                                 Icon(Icons.keyboard_arrow_right)
-                               ],
-                             ),
+                        3,
+                        (index) => Container(
+                          padding: const EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                              color: Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Image.asset(orderToGoItems[index]),
+                                  makeText(
+                                      text: orderToGo[index],
+                                      size: 14.0,
+                                      fontweight: FontWeight.bold,
+                                      fontFamily: mainFont),
+                                  const Icon(Icons.keyboard_arrow_right)
+                                ],
+                              ),
                               // const Divider(height: 2,),
-                            ],),
-                          ).onTap(() {
-                            VxToast.show(context, msg: '$index');
-                          }).box.margin(const EdgeInsets.only(bottom: 7)).make(),
-
+                            ],
+                          ),
+                        )
+                            .onTap(() {
+                              VxToast.show(context, msg: '$index');
+                            })
+                            .box
+                            .margin(const EdgeInsets.only(bottom: 7))
+                            .make(),
                       ),
                     ),
                   )

@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:seed_hub/const/firebase_const.dart';
 
 class ProductDetailsController extends GetxController {
   var colorIndex = 0.obs;
@@ -20,5 +22,17 @@ class ProductDetailsController extends GetxController {
 
   totalPrice({currentPrice}) {
     price.value = currentPrice * quantityIndex.value;
+  }
+
+  addToCart(data) async {
+    DocumentReference cartStore = firestore
+        .collection('cs')
+        .doc(currentUser!.uid)
+        .collection('newwork').doc();
+
+    cartStore.set({
+      'name' : 'Hence',
+      'age' : '25'
+    });
   }
 }

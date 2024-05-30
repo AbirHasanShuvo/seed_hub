@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:seed_hub/common_widgets/text_widget.dart';
 import 'package:seed_hub/const/colors.dart';
+import 'package:seed_hub/const/firebase_const.dart';
 import 'package:seed_hub/controllers/product_details_controller.dart';
 
 import '../../const/const.dart';
@@ -16,6 +17,7 @@ class ProductDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(ProductDetailsController());
+
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
@@ -74,8 +76,9 @@ class ProductDetailsScreen extends StatelessWidget {
                 color: Colors.white),
           ),
         )
-            .onTap(() {
-              VxToast.show(context, msg: 'Place order is working');
+            .onTap(() async {
+              // controller.addToCart(data);
+          print(firestore.collection('products').snapshots());
             })
             .box
             .make(),
@@ -240,7 +243,6 @@ class ProductDetailsScreen extends StatelessWidget {
                     fontFamily: mainFont,
                     fontweight: FontWeight.bold),
                 10.heightBox,
-
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(

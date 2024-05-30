@@ -30,4 +30,9 @@ class FirestoreServices {
         .where('is_featured', isEqualTo: true)
         .get();
   }
+
+  static gegureProduct() {
+    return firestore
+        .collection(productsCollection).id;
+  }
 }
