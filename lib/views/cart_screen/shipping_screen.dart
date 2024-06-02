@@ -1,4 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:seed_hub/const/firebase_const.dart';
+import 'package:seed_hub/controllers/cart_controller.dart';
+import 'package:seed_hub/services/firestore_services.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../common_widgets/text_widget.dart';
@@ -12,6 +17,7 @@ class ShippingScreen extends StatefulWidget {
 }
 
 class _ShippingScreenState extends State<ShippingScreen> {
+  var controller = Get.put(CartController());
   var addressError = false;
   var cityError = false;
   var stateError = false;
@@ -67,6 +73,7 @@ class _ShippingScreenState extends State<ShippingScreen> {
                 child: TextFormField(
                   controller: addressController,
                   // obscureText: isPass ? true : false,
+
                   decoration: InputDecoration(
                       errorText: addressError ? 'Address is required' : null,
                       errorStyle: TextStyle(
@@ -77,6 +84,9 @@ class _ShippingScreenState extends State<ShippingScreen> {
                       hintStyle:
                           TextStyle(color: Colors.grey, fontFamily: mainFont),
                       border: InputBorder.none),
+                  style: TextStyle(
+                    fontFamily: mainFont,
+                  ),
                 ),
               ),
               Container(
@@ -85,6 +95,9 @@ class _ShippingScreenState extends State<ShippingScreen> {
                     border: Border(
                         bottom: BorderSide(color: Colors.grey.shade200))),
                 child: TextFormField(
+                  style: TextStyle(
+                    fontFamily: mainFont,
+                  ),
                   controller: cityController,
                   // obscureText: isPass ? true : false,
                   decoration: InputDecoration(
@@ -101,6 +114,9 @@ class _ShippingScreenState extends State<ShippingScreen> {
                     border: Border(
                         bottom: BorderSide(color: Colors.grey.shade200))),
                 child: TextFormField(
+                  style: TextStyle(
+                    fontFamily: mainFont,
+                  ),
                   controller: stateController,
                   // obscureText: isPass ? true : false,
                   decoration: InputDecoration(
@@ -116,6 +132,9 @@ class _ShippingScreenState extends State<ShippingScreen> {
                     border: Border(
                         bottom: BorderSide(color: Colors.grey.shade200))),
                 child: TextFormField(
+                  style: TextStyle(
+                    fontFamily: mainFont,
+                  ),
                   controller: postalCodeController,
                   // obscureText: isPass ? true : false,
                   decoration: InputDecoration(
@@ -131,6 +150,9 @@ class _ShippingScreenState extends State<ShippingScreen> {
                     border: Border(
                         bottom: BorderSide(color: Colors.grey.shade200))),
                 child: TextFormField(
+                  style: TextStyle(
+                    fontFamily: mainFont,
+                  ),
                   controller: emailController,
                   // obscureText: isPass ? true : false,
                   decoration: InputDecoration(
@@ -150,6 +172,9 @@ class _ShippingScreenState extends State<ShippingScreen> {
                     border: Border(
                         bottom: BorderSide(color: Colors.grey.shade200))),
                 child: TextFormField(
+                  style: TextStyle(
+                    fontFamily: mainFont,
+                  ),
                   controller: phoneController,
                   // obscureText: isPass ? true : false,
                   decoration: InputDecoration(
@@ -162,6 +187,9 @@ class _ShippingScreenState extends State<ShippingScreen> {
                       border: InputBorder.none),
                 ),
               ),
+              15.heightBox,
+              ElevatedButton(
+                  onPressed: () async {}, child: const Text('click')),
               15.heightBox,
               Container(
                 width: double.infinity,
@@ -178,7 +206,7 @@ class _ShippingScreenState extends State<ShippingScreen> {
                       fontweight: FontWeight.bold,
                       color: Colors.white),
                 ),
-              ).onTap(() {
+              ).onTap(() async {
                 if (addressController.text.isEmpty) {
                   setState(() {
                     addressError = true;
@@ -196,7 +224,25 @@ class _ShippingScreenState extends State<ShippingScreen> {
                     phoneError = true;
                   });
                 } else {
-                  VxToast.show(context, msg: 'Order place successfully');
+                  QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+                      .collection('carts')
+                      .get();
+
+                  var _data = querySnapshot.docs
+                      .map((doc) => doc.data() as Map<String, dynamic>)
+                      .toList();
+
+                  controller.moreToAdd(_data);
+                  controller.addToOrders(
+                      addressController.text,
+                      cityController.text,
+                      stateController.text,
+                      postalCodeController.text,
+                      emailController.text,
+                      phoneController.text,
+                      _data);
+
+                  VxToast.show(context, msg: 'Order has been placed');
                 }
               })
             ],
