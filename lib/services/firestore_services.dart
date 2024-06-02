@@ -38,6 +38,12 @@ class FirestoreServices {
   static getCartItems() {
     return firestore
         .collection('carts')
-        .where('added_by', isEqualTo: currentUser!.uid).get();
+        .where('added_by', isEqualTo: currentUser!.uid)
+        .snapshots();
+  }
+
+  static deleteCartItem(docId){
+    firestore.collection('carts').doc(docId).delete();
+
   }
 }
