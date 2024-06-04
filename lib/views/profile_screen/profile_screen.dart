@@ -16,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: FirestoreServices.getAllOrdersbyUser(),
+        future: FirestoreServices.getUserWithDetails(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return const Center(
@@ -27,9 +27,8 @@ class ProfileScreen extends StatelessWidget {
               child: "No product found".text.make(),
             );
           } else {
-            var data = snapshot.data!.docs;
+            var userData = snapshot.data!.docs;
 
-            var orderItem = data.length;
             return Stack(
               children: [
                 Column(
@@ -60,10 +59,17 @@ class ProfileScreen extends StatelessWidget {
                   child: Container(
                     height: screenWidth(context) * .4,
                     width: screenWidth(context) * .4,
-                    child: Image.asset(dummyProfile),
+                    child: userData[0]['imgurl'] == ''
+                        ? Image.asset(dummyProfile)
+                        : Image.network(
+                            userData[0]['imgurl'],
+                            fit: BoxFit.cover,
+                          ).box.roundedFull.clip(Clip.antiAlias).make(),
                   )
                       .onTap(() {
-                        Get.to(() => EditProfileScreen());
+                        Get.to(() => EditProfileScreen(
+                              data: userData[0],
+                            ));
                       })
                       .box
                       .make(),
@@ -78,7 +84,7 @@ class ProfileScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         makeText(
-                          text: "Abir Hasan",
+                          text: userData[0]['name'],
                           size: 20.0,
                           fontFamily: mainFont,
                         ),
@@ -86,26 +92,45 @@ class ProfileScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.grey.shade100,
-                                  borderRadius: BorderRadius.circular(10)),
-                              padding: const EdgeInsets.all(15),
-                              child: Column(
-                                children: [
-                                  makeText(
-                                      text: 'Your order',
-                                      size: 13.0,
-                                      fontFamily: mainFont),
-                                  makeText(
-                                      text: orderItem == null
-                                          ? 'no order'
-                                          : orderItem.toString(),
-                                      size: 19.0,
-                                      fontweight: FontWeight.bold,
-                                      fontFamily: mainFont)
-                                ],
-                              ),
+                            FutureBuilder(
+                              future: FirestoreServices.getAllOrdersbyUser(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                if (!snapshot.hasData) {
+                                  return const Center(
+                                    child: Text('loading.....'),
+                                  );
+                                } else if (snapshot.data!.docs.isEmpty) {
+                                  return Center(
+                                    child: "No product found".text.make(),
+                                  );
+                                } else {
+                                  var orderData = snapshot.data!.docs;
+                                  var orderCount = orderData.length;
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey.shade100,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    padding: const EdgeInsets.all(15),
+                                    child: Column(
+                                      children: [
+                                        makeText(
+                                            text: 'Your order',
+                                            size: 13.0,
+                                            fontFamily: mainFont),
+                                        makeText(
+                                            text: orderData == null
+                                                ? 'no order'
+                                                : orderCount.toString(),
+                                            size: 19.0,
+                                            fontweight: FontWeight.bold,
+                                            fontFamily: mainFont)
+                                      ],
+                                    ),
+                                  );
+                                }
+                              },
                             ),
                             StreamBuilder(
                               stream: FirestoreServices.getCartItems(),
