@@ -16,9 +16,12 @@ class CategoryDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.arrow_back_ios).onTap(() {
-          Navigator.of(context).pop();
-        }).box.make(),
+        leading: const Icon(Icons.arrow_back_ios)
+            .onTap(() {
+              Navigator.of(context).pop();
+            })
+            .box
+            .make(),
         iconTheme: const IconThemeData(color: Colors.white),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -30,11 +33,11 @@ class CategoryDetails extends StatelessWidget {
           ),
         ),
         title: makeText(
-          text: 'Choose your products',
-          size: 20.0,
-          fontweight: FontWeight.bold,
-          fontFamily: mainFont, color: Colors.white),
-
+            text: 'Choose your products',
+            size: 20.0,
+            fontweight: FontWeight.bold,
+            fontFamily: mainFont,
+            color: Colors.white),
       ),
       backgroundColor: Colors.grey.shade100,
       body: SafeArea(
@@ -45,7 +48,6 @@ class CategoryDetails extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 10.heightBox,
                 FutureBuilder(
                     future: FirestoreServices.getProductByCategory(

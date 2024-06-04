@@ -42,8 +42,20 @@ class FirestoreServices {
         .snapshots();
   }
 
-  static deleteCartItem(docId){
+  static deleteCartItem(docId) {
     firestore.collection('carts').doc(docId).delete();
+  }
 
+  static getUserWithDetails() {
+    return firestore
+        .collection('user')
+        .where('id', isEqualTo: currentUser!.uid)
+        .get();
+  }
+
+  static getAllOrdersbyUser() {
+    return firestore
+        .collection('orders')
+        .where('added_by', isEqualTo: currentUser!.uid).get();
   }
 }

@@ -24,6 +24,7 @@ class _ShippingScreenState extends State<ShippingScreen> {
   var postalCodeError = false;
   var emailError = false;
   var phoneError = false;
+  var nameError = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +34,7 @@ class _ShippingScreenState extends State<ShippingScreen> {
     var postalCodeController = TextEditingController();
     var emailController = TextEditingController();
     var phoneController = TextEditingController();
+    var nameController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -65,6 +67,30 @@ class _ShippingScreenState extends State<ShippingScreen> {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(color: Colors.grey.shade200))),
+                child: TextFormField(
+                  controller: nameController,
+                  // obscureText: isPass ? true : false,
+
+                  decoration: InputDecoration(
+                      errorText: addressError ? 'Name is required' : null,
+                      errorStyle: TextStyle(
+                        fontFamily: mainFont,
+                        color: Colors.red,
+                      ),
+                      hintText: 'Name',
+                      hintStyle:
+                          TextStyle(color: Colors.grey, fontFamily: mainFont),
+                      border: InputBorder.none),
+                  style: TextStyle(
+                    fontFamily: mainFont,
+                  ),
+                ),
+              ),
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
@@ -188,9 +214,6 @@ class _ShippingScreenState extends State<ShippingScreen> {
                 ),
               ),
               15.heightBox,
-              ElevatedButton(
-                  onPressed: () async {}, child: const Text('click')),
-              15.heightBox,
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(10),
@@ -200,13 +223,18 @@ class _ShippingScreenState extends State<ShippingScreen> {
                 ),
                 child: Center(
                   child: makeText(
-                      text: 'Confirm Address',
+                      text: 'Confirm shipping',
                       size: 20.0,
                       fontFamily: mainFont,
                       fontweight: FontWeight.bold,
                       color: Colors.white),
                 ),
               ).onTap(() async {
+                if (nameController.text.isEmpty) {
+                  setState(() {
+                    nameError = true;
+                  });
+                }
                 if (addressController.text.isEmpty) {
                   setState(() {
                     addressError = true;
@@ -232,8 +260,8 @@ class _ShippingScreenState extends State<ShippingScreen> {
                       .map((doc) => doc.data() as Map<String, dynamic>)
                       .toList();
 
-                  controller.moreToAdd(_data);
                   controller.addToOrders(
+                      nameController.text,
                       addressController.text,
                       cityController.text,
                       stateController.text,

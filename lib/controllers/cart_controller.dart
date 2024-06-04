@@ -17,8 +17,10 @@ class CartController extends GetxController {
     firestore.collection('orders').doc().set({'productDetails': cartItems});
   }
 
-  addToOrders(address, city, state, postal, email, phone, cartData) async {
+  addToOrders(
+      name, address, city, state, postal, email, phone, cartData) async {
     firestore.collection('orders').doc().set({
+      'name': name,
       'address': address,
       'city': city,
       'state': state,

@@ -8,6 +8,7 @@ import 'package:seed_hub/const/const.dart';
 import 'package:seed_hub/controllers/cart_controller.dart';
 import 'package:seed_hub/services/firestore_services.dart';
 import 'package:seed_hub/views/cart_screen/shipping_screen.dart';
+import 'package:seed_hub/views/testing_page/testing_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});

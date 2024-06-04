@@ -11,8 +11,9 @@ class TestingScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: FutureBuilder(
-          future: FirestoreServices.getCartItems(),
-          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          future: FirestoreServices.getUserWithDetails(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) {
               return Center(
                 child: Text('loading'),
@@ -29,7 +30,7 @@ class TestingScreen extends StatelessWidget {
                     testData.length,
                     (index) => Column(
                           children: [
-                           Center(child: Text(testData[index]['title']))
+                            Center(child: Text(testData[index]['name']))
                           ],
                         )),
               );
