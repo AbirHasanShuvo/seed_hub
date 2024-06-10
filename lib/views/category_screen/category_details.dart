@@ -111,7 +111,9 @@ class CategoryDetails extends StatelessWidget {
                               )
                                   .onTap(() {
                                     Get.to(() => ProductDetailsScreen(
-                                        data: featureData[index]));
+                                          data: featureData[index],
+                                          dataIndex: index,
+                                        ));
                                   })
                                   .box
                                   .make();

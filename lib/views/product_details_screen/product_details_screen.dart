@@ -1,3 +1,4 @@
+import 'package:another_carousel_pro/another_carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,9 +10,11 @@ import '../../const/const.dart';
 import '../../services/firestore_services.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({super.key, required this.data});
+  const ProductDetailsScreen(
+      {super.key, required this.data, required this.dataIndex});
 
   final dynamic data;
+  final dataIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -110,24 +113,39 @@ class ProductDetailsScreen extends StatelessWidget {
             () => Column(
               children: [
                 10.heightBox,
-                VxSwiper.builder(
-                  height: 150,
-                  autoPlay: true,
-                  aspectRatio: 16 / 9,
-                  itemCount: data['p_imgs'].length,
-                  enlargeCenterPage: true,
-                  itemBuilder: (context, index) => Image.network(
-                    data['p_imgs'][index],
-                    fit: BoxFit.fill,
-                    width: double.infinity,
-                    // height: screenHeight(context)*0.5,
-                  )
-                      .box
-                      .rounded
-                      .clip(Clip.antiAlias)
-                      .margin(const EdgeInsets.symmetric(horizontal: 8))
-                      .make(),
+                // VxSwiper.builder(
+                //   height: 150,
+                //   autoPlay: true,
+                //   aspectRatio: 16 / 9,
+                //   itemCount: data['p_imgs'].length,
+                //   enlargeCenterPage: true,
+                //   itemBuilder: (context, index) => Image.network(
+                //     data['p_imgs'][index],
+                //     fit: BoxFit.fill,
+                //     width: double.infinity,
+                //     // height: screenHeight(context)*0.5,
+                //   )
+                //       .box
+                //       .rounded
+                //       .clip(Clip.antiAlias)
+                //       .margin(const EdgeInsets.symmetric(horizontal: 8))
+                //       .make(),
+                // ),
+
+                SizedBox(
+                  height: screenHeight(context) * 0.4,
+                  width: double.infinity,
+                  child: AnotherCarousel(
+                    images: [
+                      Image.network(data['p_imgs'][0]),
+                      Image.network(data['p_imgs'][1]),
+                      Image.network(data['p_imgs'][2]),
+                    ],
+                    dotSize: 6,
+                    indicatorBgPadding: 5,
+                  ),
                 ),
+
                 10.heightBox,
                 Text(
                   data['p_name'],
@@ -274,7 +292,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 ),
                 10.heightBox,
                 makeText(
-                    text: 'You may also love',
+                    text: 'You may also like',
                     size: 15.0,
                     fontFamily: mainFont,
                     fontweight: FontWeight.bold),
@@ -288,65 +306,77 @@ class ProductDetailsScreen extends StatelessWidget {
                         physics: const BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         child: FutureBuilder(
-                          future: FirestoreServices.getProductByCategory(
-                              categoryName: data['p_category']),
-                          builder: (BuildContext context,
-                              AsyncSnapshot<QuerySnapshot> snapshot) {
-                            if (!snapshot.hasData) {
-                              return makeText(text: 'No data');
-                            } else if (snapshot.data!.docs.isEmpty) {
-                              return const Center(
-                                child: Text('No data is as feature'),
-                              );
-                            } else {
-                              var featureData = snapshot.data!.docs;
-                              return Row(
-                                  children: List.generate(
-                                      featureData.length,
-                                      (index) => Container(
-                                            padding: const EdgeInsets.all(10),
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            child: Column(
-                                              children: [
-                                                Image.network(
-                                                  featureData[index]['p_imgs']
-                                                      [0],
-                                                  width: 150,
-                                                  height: 130,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                                Text(
-                                                  featureData[index]['p_name'],
-                                                  style: TextStyle(
-                                                      fontSize: 14.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontFamily: mainFont,
-                                                      color: Colors.green,
-                                                      overflow: TextOverflow
-                                                          .ellipsis),
-                                                ),
-                                                2.heightBox,
-                                                makeText(
-                                                    text: featureData[index]
-                                                        ['p_price'],
-                                                    size: 16.0,
-                                                    fontFamily: mainFont,
-                                                    fontweight: FontWeight.bold,
-                                                    color: Colors.red)
-                                              ],
+                            future: FirestoreServices.getProductByCategory(
+                                categoryName: data['p_category']),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (!snapshot.hasData) {
+                                return makeText(text: 'No data');
+                              } else if (snapshot.data!.docs.isEmpty) {
+                                return const Center(
+                                  child: Text('No data is as feature'),
+                                );
+                              } else {
+                                var featureData = snapshot.data!.docs;
+
+                                return Row(
+                                  children: List.generate(featureData.length,
+                                      (index) {
+                                    if (index != dataIndex) {
+                                      return Container(
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Column(
+                                          children: [
+                                            Image.network(
+                                              featureData[index]['p_imgs'][0],
+                                              width: 150,
+                                              height: 130,
+                                              fit: BoxFit.cover,
                                             ),
-                                          )
-                                              .box
-                                              .padding(const EdgeInsets.only(
-                                                  right: 20))
-                                              .make()));
-                            }
-                          },
-                        )))
+                                            Text(
+                                              featureData[index]['p_name'],
+                                              style: TextStyle(
+                                                  fontSize: 14.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: mainFont,
+                                                  color: Colors.green,
+                                                  overflow:
+                                                      TextOverflow.ellipsis),
+                                            ),
+                                            2.heightBox,
+                                            makeText(
+                                                text: featureData[index]
+                                                    ['p_price'],
+                                                size: 16.0,
+                                                fontFamily: mainFont,
+                                                fontweight: FontWeight.bold,
+                                                color: Colors.red)
+                                          ],
+                                        ),
+                                      )
+                                          .box
+                                          .padding(
+                                              const EdgeInsets.only(right: 20))
+                                          .make();
+                                    }
+                                    return const SizedBox();
+                                  }),
+                                );
+
+                                //   return Row(
+                                //       children: List.generate(
+                                //           featureData.length,
+                                //
+                                //
+                                //
+                                //
+                                // ),
+                              }
+                            })))
               ],
             ),
           ),

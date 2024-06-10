@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:seed_hub/const/images.dart';
 import 'package:seed_hub/services/firestore_services.dart';
-import 'package:seed_hub/views/category_screen/category_details.dart';
 import 'package:seed_hub/views/product_details_screen/product_details_screen.dart';
 
 import '../../common_widgets/feature_buttton.dart';
@@ -36,7 +34,6 @@ class HomeScreen extends StatelessWidget {
                       fontFamily: mainFont),
                 ),
                 10.heightBox,
-
                 VxSwiper.builder(
                   height: 150,
                   autoPlay: true,
@@ -53,7 +50,6 @@ class HomeScreen extends StatelessWidget {
                       .margin(const EdgeInsets.symmetric(horizontal: 8))
                       .make(),
                 ),
-
                 10.heightBox,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -149,8 +145,12 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               )
                                   .onTap(() {
-                                    Get.to(() => ProductDetailsScreen(
-                                        data: featureData[index]));
+                                    Get.to(
+                                      () => ProductDetailsScreen(
+                                        data: featureData[index],
+                                        dataIndex: index,
+                                      ),
+                                    );
                                   })
                                   .box
                                   .make();
@@ -203,59 +203,69 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.green),
                       child: SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           child: FutureBuilder(
                             future: FirestoreServices.getFeatureProduct(),
-
-                            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                              if(!snapshot.hasData){
+                            builder: (BuildContext context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (!snapshot.hasData) {
                                 return makeText(text: 'No data');
-                              }
-                              else if(snapshot.data!.docs.isEmpty){
-                                return const Center(child: Text('No data is as feature'),);
-                              }else{
+                              } else if (snapshot.data!.docs.isEmpty) {
+                                return const Center(
+                                  child: Text('No data is as feature'),
+                                );
+                              } else {
                                 var featureData = snapshot.data!.docs;
-                                return  Row(
+                                return Row(
                                     children: List.generate(
                                         featureData.length,
-                                            (index) => Container(
-                                          padding: const EdgeInsets.all(10),
-                                          decoration: BoxDecoration(
-                                              color: whiteColor,
-                                              borderRadius:
-                                              BorderRadius.circular(10)),
-                                          child: Column(
-                                            children: [
-                                              Image.network(
-                                                featureData[index]['p_imgs'][0],
-                                                width: 150,
-                                                height: 130,
-                                                fit: BoxFit.cover,
+                                        (index) => Container(
+                                              padding: const EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                  color: whiteColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                              child: Column(
+                                                children: [
+                                                  Image.network(
+                                                    featureData[index]['p_imgs']
+                                                        [0],
+                                                    width: 150,
+                                                    height: 130,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  Text(
+                                                    featureData[index]
+                                                        ['p_name'],
+                                                    style: TextStyle(
+                                                        fontSize: 14.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontFamily: mainFont,
+                                                        color: Colors.green,
+                                                        overflow: TextOverflow
+                                                            .ellipsis),
+                                                  ),
+                                                  2.heightBox,
+                                                  makeText(
+                                                      text: featureData[index]
+                                                          ['p_price'],
+                                                      size: 16.0,
+                                                      fontFamily: mainFont,
+                                                      fontweight:
+                                                          FontWeight.bold,
+                                                      color: Colors.red)
+                                                ],
                                               ),
-                                              Text(
-                                                featureData[index]['p_name'],
-                                                style: TextStyle(
-                                                    fontSize: 14.0,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontFamily: mainFont,
-                                                    color: Colors.green,
-                                                    overflow: TextOverflow.ellipsis),
-                                              ),
-                                              2.heightBox,
-                                              makeText(
-                                                  text : featureData[index]['p_price'],
-                                                  size: 16.0,
-                                                  fontFamily: mainFont,
-                                                  fontweight: FontWeight.bold,
-                                                  color: Colors.red)
-                                            ],
-                                          ),
-                                        ).box.padding(const EdgeInsets.only(right: 20)).make()
-                                    ));
+                                            )
+                                                .box
+                                                .padding(const EdgeInsets.only(
+                                                    right: 20))
+                                                .make()));
                               }
                             },
-
                           )))
                 ]),
               ],
