@@ -70,3 +70,11 @@ const dummyProfile = "assets/icons/man.png";
 const yourOrder = "assets/icons/order.png";
 const yourCarts = "assets/icons/carts.png";
 const yourWishlist = "assets/icons/wishlist.png";
+
+//for drawer images
+const filterImage = "assets/icons/filter.png";
+
+const laptop = "assets/icons/laptop.png";
+const pcComponents = "assets/icons/pccomponents.png";
+const smartPhones = "assets/icons/smartphones.png";
+const networkDevices = "assets/icons/networkdevices.png";

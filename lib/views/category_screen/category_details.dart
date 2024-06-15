@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seed_hub/const/list.dart';
+import 'package:seed_hub/views/category_screen/drawer.dart';
 
 import '../../common_widgets/text_widget.dart';
 import '../../const/const.dart';
@@ -15,13 +17,22 @@ class CategoryDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: categoryName == 'Electronics & Gadgets'
+          ? MyDrawer(
+              drawerItems: drawerItem2,
+              drawerImageItems: drawerImageItem2,
+            )
+          : MyDrawer(
+              drawerItems: drawerItem9,
+              drawerImageItems: drawerImageItem2,
+            ),
       appBar: AppBar(
-        leading: const Icon(Icons.arrow_back_ios)
-            .onTap(() {
-              Navigator.of(context).pop();
-            })
-            .box
-            .make(),
+        // leading: const Icon(Icons.arrow_back_ios)
+        //     .onTap(() {
+        //       Navigator.of(context).pop();
+        //     })
+        //     .box
+        //     .make(),
         iconTheme: const IconThemeData(color: Colors.white),
         flexibleSpace: Container(
           decoration: const BoxDecoration(

@@ -224,6 +224,7 @@ class ProfileScreen extends StatelessWidget {
                                     if (index == 0) {
                                       Get.to(() => OrderScreen());
                                     }
+
                                   })
                                   .box
                                   .margin(const EdgeInsets.only(bottom: 7))

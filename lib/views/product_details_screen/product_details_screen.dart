@@ -14,11 +14,12 @@ class ProductDetailsScreen extends StatelessWidget {
       {super.key, required this.data, required this.dataIndex});
 
   final dynamic data;
-  final dataIndex;
+  final dynamic dataIndex;
 
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(ProductDetailsController());
+    print(dataIndex);
 
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
@@ -113,25 +114,6 @@ class ProductDetailsScreen extends StatelessWidget {
             () => Column(
               children: [
                 10.heightBox,
-                // VxSwiper.builder(
-                //   height: 150,
-                //   autoPlay: true,
-                //   aspectRatio: 16 / 9,
-                //   itemCount: data['p_imgs'].length,
-                //   enlargeCenterPage: true,
-                //   itemBuilder: (context, index) => Image.network(
-                //     data['p_imgs'][index],
-                //     fit: BoxFit.fill,
-                //     width: double.infinity,
-                //     // height: screenHeight(context)*0.5,
-                //   )
-                //       .box
-                //       .rounded
-                //       .clip(Clip.antiAlias)
-                //       .margin(const EdgeInsets.symmetric(horizontal: 8))
-                //       .make(),
-                // ),
-
                 SizedBox(
                   height: screenHeight(context) * 0.4,
                   width: double.infinity,
@@ -145,7 +127,6 @@ class ProductDetailsScreen extends StatelessWidget {
                     indicatorBgPadding: 5,
                   ),
                 ),
-
                 10.heightBox,
                 Text(
                   data['p_name'],

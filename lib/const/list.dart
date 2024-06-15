@@ -100,3 +100,19 @@ const orderinProfile = ['Your Orders', 'Your Carts', 'Your Wish'];
 const orderToGo = ['Order items', 'Cart items', 'Wishlist items'];
 
 const orderToGoItems = [yourOrder, yourCarts, yourWishlist];
+
+//for the drawer items
+
+const drawerItem2 = [
+  'Laptop',
+  'Pc components',
+  'Smartphones',
+  'Network devices'
+];
+const drawerImageItem2 = [laptop, pcComponents, smartPhones, networkDevices];
+const drawerItem9 = [
+  'Toys',
+  'Buzz lightyear',
+  'Remote control cars',
+  'Helicolter'
+];

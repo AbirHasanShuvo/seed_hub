@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:seed_hub/controllers/home_controller.dart';
 import 'package:seed_hub/services/firestore_services.dart';
 import 'package:seed_hub/views/product_details_screen/product_details_screen.dart';
 
@@ -14,6 +15,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(HomeController());
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       body: SafeArea(
@@ -147,9 +149,8 @@ class HomeScreen extends StatelessWidget {
                                   .onTap(() {
                                     Get.to(
                                       () => ProductDetailsScreen(
-                                        data: featureData[index],
-                                        dataIndex: index,
-                                      ),
+                                          data: featureData[index],
+                                          dataIndex: -130),
                                     );
                                   })
                                   .box
